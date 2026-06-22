@@ -1,0 +1,19 @@
+.DS_Store
+.env
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+dist/
+build/
+*.egg-info/
+
+# Runtime artifacts. Keep directories via .gitkeep, but do not commit real call data accidentally.
+artifacts/*.jsonl
+artifacts/*.json
+artifacts/events/*.jsonl
+artifacts/recordings/*.mp3
+artifacts/recordings/*.ogg
+artifacts/recordings/*.wav
+artifacts/transcripts/*.txt
