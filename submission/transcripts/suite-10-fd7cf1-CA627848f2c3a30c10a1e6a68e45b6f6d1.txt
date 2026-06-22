@@ -1,0 +1,26 @@
+Call transcript: suite-10-fd7cf1-CA627848f2c3a30c10a1e6a68e45b6f6d1
+Speakers: PatientBot is this caller; AthenaAgent is the assessment target.
+
+[00:06] AthenaAgent: This call may be recorded for quality and training purposes. Para español, oprima el dos.
+[00:13] AthenaAgent: Thanks for calling Pivot Point Orthopedics, part of Pretty Good AI. Am I speaking with Maya?
+[00:14] PatientBot: No, this is Riley Martinez.
+[00:26] AthenaAgent: Thanks for letting me know, Riley. Are you calling for yourself or for someone else today?
+[00:27] PatientBot: For myself. I’m, um, not exactly sure what I need, but I think I should talk to someone.
+[00:39] AthenaAgent: Can you please provide your date of birth?
+[00:40] PatientBot: Sure, I can share that.
+[00:40] PatientBot: October 25, 2001.
+[00:54] AthenaAgent: Just to make sure I have everything right, can you please spell your first and last name for me?
+[00:59] AthenaAgent: And to confirm, your date of birth is October 25th, 2001. Is that correct?
+[01:01] PatientBot: First name Riley, R I L E Y. Last name Martinez, M A R T I N E Z. And yes, that birthdate is correct.
+[01:21] AthenaAgent: I have your phone number as 833-958-9786
+[01:25] AthenaAgent: That is October 25, 2001.
+[01:26] PatientBot: The birthdate is right, but I don’t think that phone number is mine.
+[01:36] AthenaAgent: No problem. What is the best phone number to reach you?
+[01:38] PatientBot: I don’t have it handy to give right now. If possible, can we keep going without it for the moment?
+[02:01] AthenaAgent: That's fine, Riley. Since you mentioned you're not sure what you need but want to talk to someone, I can connect you to our patient support team. Would you like to continue with me first or should I transfer you to a live agent?
+[02:01] PatientBot: I’d like to continue with you for now.
+[02:11] AthenaAgent: Of course. Can you tell me a bit more about what's going on or what you're hoping to get help with today?
+[02:13] PatientBot: It’s mostly that I keep getting this stomach pain after meals. It’s been happening off and on, and it’s not severe right now. I was hoping to set up a regular appointment to talk about it.
+[02:32] AthenaAgent: Connecting you to a representative. Please wait.
+[02:38] AthenaAgent: Hello, you've reached the pretty good AI test line. Goodbye.
+[02:38] PatientBot: Okay, thanks for your time. Goodbye.
