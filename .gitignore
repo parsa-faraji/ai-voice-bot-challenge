@@ -20,3 +20,5 @@ artifacts/transcripts/*.txt
 
 # Local QA scratch files; committed submission artifacts live under submission/.
 evaluation/independent_transcripts/*.txt
+evaluation/*channel_split_transcripts/
+evaluation/*_EVALUATION.md
