@@ -17,3 +17,6 @@ artifacts/recordings/*.mp3
 artifacts/recordings/*.ogg
 artifacts/recordings/*.wav
 artifacts/transcripts/*.txt
+
+# Local QA scratch files; committed submission artifacts live under submission/.
+evaluation/independent_transcripts/*.txt

@@ -22,6 +22,8 @@ The first rough pilot call is retained under `artifacts/` only as iteration evid
 - `submission/transcripts/*.txt`
 - `submission/BUG_REPORT.md`
 - `BUG_REPORT.md`
+- `CALL_QA.md`
+- `CALL_EVALUATION.md`
 - `ARCHITECTURE.md`
 - `SCENARIOS.md`
 - `README.md`
