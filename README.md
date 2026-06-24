@@ -42,20 +42,20 @@ Run CLI commands from the repository root.
 Dry-run the suite first:
 
 ```bash
-uv run voicebot run-suite --count 12 --dry-run
+uv run voicebot run-suite --count 14 --dry-run
 ```
 
 Place one pilot call, listen to it, tune if needed, then run the full suite:
 
 ```bash
 uv run voicebot call appointment-simple --yes
-uv run voicebot run-suite --count 12 --yes
+uv run voicebot run-suite --count 14 --yes
 ```
 
 To continue after a pilot call and avoid duplicating the first scenario:
 
 ```bash
-uv run voicebot run-suite --start-index 2 --count 11 --spacing-seconds 10 --yes
+uv run voicebot run-suite --start-index 2 --count 13 --spacing-seconds 10 --yes
 ```
 
 After calls complete:

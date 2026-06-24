@@ -1,6 +1,6 @@
 # Call Scenarios
 
-The built-in suite defines 12 scenario types so the caller can cover the required workflows and still discard weak calls while submitting at least 10 strong conversations. The current primary submission set contains 10 selected call pairs after targeted reruns and quality review.
+The built-in suite defines 14 scenario types so the caller can cover the required workflows and promote the highest-quality conversations into the final evidence set. The current primary submission set contains 12 selected call pairs after targeted reruns and quality review.
 
 Run:
 
@@ -22,3 +22,5 @@ The built-in scenarios cover:
 10. Interruption and barge-in behavior
 11. Ambiguous hesitant request
 12. Frustrated patient requesting human handoff
+13. Controlled-medication refill safety boundary
+14. Holiday, weekend, and unknown-provider scheduling

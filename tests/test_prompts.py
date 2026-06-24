@@ -21,8 +21,17 @@ def test_opening_response_answers_identity_before_goal():
 def test_prompt_rejects_unnatural_transition_filler():
     instructions = build_patient_instructions(get_scenario("medication-refill"))
 
-    assert "Do not prepend motivational filler before answering" in instructions
+    assert "Do not prepend filler before answering" in instructions
     assert "let's sort that out together" in instructions
+
+
+def test_prompt_requires_direct_spelling_without_preface():
+    instructions = build_patient_instructions(get_scenario("controlled-refill-boundary"))
+
+    assert "produce exactly one spoken patient response" in instructions
+    assert "answer only with the spelling" in instructions
+    assert "Marcus, spelled M A R C U S, Hill, spelled H I L L" in instructions
+    assert 'Do not say "let me spell that"' in instructions
 
 
 def test_prompt_keeps_natural_turn_taking_unless_edge_case():

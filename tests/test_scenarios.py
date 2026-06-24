@@ -2,7 +2,7 @@ from voicebot.scenarios import all_scenarios, get_scenario
 
 
 def test_has_standout_suite_size():
-    assert len(all_scenarios()) == 12
+    assert len(all_scenarios()) == 14
 
 
 def test_scenario_ids_are_unique():
