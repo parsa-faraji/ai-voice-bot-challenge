@@ -1,6 +1,6 @@
 # Call Selection Rationale
 
-Final calls were selected by prioritizing the assignment rubric in order: lucid voice interaction first, then realistic scenario coverage, then useful agent-side issue evidence. Calls where the agent behaved reasonably are included as clean comparison coverage.
+Final calls were selected conservatively. The goal was to test the assessment agent, but the patient bot is part of the experiment; if the caller sounded unnatural or muddied the evidence, that call was not promoted. I prioritized the assignment rubric in order: lucid voice interaction first, realistic scenario coverage second, and useful agent-side issue evidence third. Calls where the agent behaved reasonably are included as clean comparison coverage because a fair test suite makes the reported failures more credible.
 
 ## Review Rubric
 

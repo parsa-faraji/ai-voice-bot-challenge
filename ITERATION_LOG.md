@@ -1,10 +1,10 @@
 # Iteration Log
 
-This log documents how the caller bot improved after reviewing real calls. It is organized around the assignment rubric: lucid voice interaction first, useful bug evidence second, then working code and clear thinking.
+This log documents how the caller bot improved after reviewing real calls. The main lesson was that the caller is not just a harness; it is part of the measurement system. If the patient side skips identity questions, uses clinic-staff language, or keeps talking after a goodbye, the bug report becomes less trustworthy. The iteration work focused on removing that contamination before promoting evidence.
 
 ## Baseline Review
 
-The first call set proved the voice bridge worked and produced useful issues, and the review surfaced several improvement areas:
+The first call set proved the voice bridge worked and produced useful issues, and the review surfaced several measurement problems:
 
 - Some patient turns sounded slightly like clinic staff.
 - Several scenarios got pulled into identity verification loops before reaching the intended task.
