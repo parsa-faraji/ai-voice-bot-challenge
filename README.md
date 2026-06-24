@@ -37,11 +37,7 @@ uv run voicebot twiml appointment-simple
 
 ## Run Calls
 
-Run CLI commands from the repository root. If you are in another directory, use:
-
-```bash
-uv run --project /Users/parsafarajialamouti/ai-voice-bot-challenge voicebot doctor
-```
+Run CLI commands from the repository root.
 
 Dry-run the suite first:
 
@@ -76,22 +72,3 @@ Artifacts are written under `artifacts/`:
 - `BUG_REPORT.md`: generated draft bug report for local review
 
 Calls default to a 180-second Twilio time limit (`MAX_CALL_SECONDS`) so a pilot or suite call cannot run open-ended. `run-suite` waits for each call to complete before starting the next one; overlapping calls usually sound worse and make artifacts harder to review.
-
-## Submission Checklist
-
-- Minimum 10 complete 1-3 minute calls. This repo includes 13 primary selected calls in `submission/`.
-- MP3 recording for every submitted call
-- Transcript for every submitted call
-- `ARCHITECTURE.md`
-- `SCENARIOS.md`
-- `BUG_REPORT.md` and `submission/BUG_REPORT.md`
-- `CALL_SELECTION.md` and `CALL_EVIDENCE.md`
-- `ITERATION_LOG.md`
-- `SUBMISSION.md`
-- Loom walkthrough link in this README before submission
-- 5-minute screen recording showing AI-assisted debugging/fixing
-
-## Loom Links
-
-- Walkthrough: TODO
-- AI debugging/fix recording: TODO

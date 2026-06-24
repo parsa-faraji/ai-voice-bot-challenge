@@ -48,8 +48,3 @@ The first rough pilot call is retained under ignored local `artifacts/` only and
 - `ARCHITECTURE.md`
 - `SCENARIOS.md`
 - `README.md`
-
-## Loom Links
-
-- Walkthrough: TODO
-- AI-assisted debugging/fix recording: TODO

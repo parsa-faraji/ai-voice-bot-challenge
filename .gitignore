@@ -9,7 +9,7 @@ dist/
 build/
 *.egg-info/
 
-# Runtime artifacts. Keep directories via .gitkeep, but do not commit real call data accidentally.
+# Runtime artifacts. Do not commit generated local call data accidentally.
 artifacts/*.jsonl
 artifacts/*.json
 artifacts/events/*.jsonl
