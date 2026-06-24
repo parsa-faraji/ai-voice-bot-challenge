@@ -2,7 +2,7 @@
 
 These findings come from the primary selected calls in `submission/transcripts/` and `submission/recordings/`. Severity is based on patient impact, safety risk, and likelihood of a failed front-desk workflow. Transcript timestamps are close references for review; the MP3 recordings are the source of truth.
 
-I intentionally did not report bugs from calls where the agent handled the scenario appropriately. For example, the selected insurance and office-logistics calls are kept as clean scenario coverage rather than bug evidence.
+Selected calls where the agent handled the scenario appropriately are included as clean comparison coverage. For example, the insurance, office-logistics, and holiday/provider scheduling calls help distinguish successful flows from the issues below.
 
 ## 1. Date-of-birth mismatch was accepted for scheduling
 
@@ -18,11 +18,12 @@ I intentionally did not report bugs from calls where the agent handled the scena
 - Severity: High
 - Calls:
   - `suite-01-9aa345-CA01942a2e5a7f5a00a26d7825756a06fb.txt` at `02:19`-`02:25`
-  - `suite-02-6dc9e2-CA14d7363e6bdc93228d55b1f597c68a8e.txt` at `01:57`-`02:03`
+  - `8ab7a69965-CA8f4f5c85e9fb5e018bf93e314b4816f5.txt` at `02:08`-`02:13`
   - `suite-03-4088b0-CA0102cc1d81b6f19104348a2ffbe9c35c.txt` at `02:35`-`02:41`
   - `suite-04-12debe-CA7cf387b8c7126460bf05ad683b73bb52.txt` at `02:41`-`02:46`
   - `suite-08-6f7cc5-CA202d78145882321bb7496225add88a56.txt` at `01:57`-`02:02`
   - `suite-11-916688-CA8a1a07aaf9ab1f11cc537891bad77b97.txt` at `00:45`-`00:51`
+  - `26a95f83ee-CA210d89aef1c04c89ed68c2fff462f722.txt` at `01:40`-`01:55`
 - What happened: The agent promised or initiated transfer to a representative/support team, but the call reached the Pretty Good AI test-line goodbye and ended.
 - Caveat: This may reflect assessment/test-line transfer configuration rather than core agent reasoning, but the patient-facing behavior was still a promised handoff that ended the call.
 - Why it matters: Callers are abandoned after the agent decides it cannot complete the task, including rescheduling, cancellation, refill, demographic correction, scheduling, and human handoff.
@@ -49,9 +50,10 @@ I intentionally did not report bugs from calls where the agent handled the scena
 - Severity: Medium
 - Calls:
   - `suite-01-9aa345-CA01942a2e5a7f5a00a26d7825756a06fb.txt` at `01:05`-`02:05`
-  - `suite-02-6dc9e2-CA14d7363e6bdc93228d55b1f597c68a8e.txt` at `01:12`-`01:53`
+  - `8ab7a69965-CA8f4f5c85e9fb5e018bf93e314b4816f5.txt` at `01:18`-`01:54`
   - `suite-04-12debe-CA7cf387b8c7126460bf05ad683b73bb52.txt` at `01:22`-`02:06`
   - `suite-08-6f7cc5-CA202d78145882321bb7496225add88a56.txt` at `01:06`-`01:39`
+  - `26a95f83ee-CA210d89aef1c04c89ed68c2fff462f722.txt` at `00:58`-`01:40`
 - What happened: The agent offered, accepted, or repeatedly requested name/DOB/spelling confirmation, but then still could not proceed after the caller followed that path.
 - Why it matters: Offering a verification option and then rejecting the same path creates a dead end and prevents routine front-desk tasks from completing.
 - Expected behavior: Only offer verification options that can actually be used, or state up front that staff handoff is required for that workflow.

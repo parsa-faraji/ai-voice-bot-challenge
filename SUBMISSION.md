@@ -12,13 +12,13 @@ All calls targeted only:
 
 ## Primary Selected Calls
 
-Use the 10 calls in `submission/recordings/` and `submission/transcripts/` for final review. They cover scheduling, rescheduling, cancellation, medication refill, insurance, office logistics, urgent triage, demographic correction, weekend scheduling, and human handoff.
+Use the 12 calls in `submission/recordings/` and `submission/transcripts/` for final review. They cover scheduling, rescheduling, cancellation, medication refill, controlled-medication refill boundaries, insurance, office logistics, urgent triage, demographic correction, weekend/holiday/provider scheduling, and human handoff.
 
 Primary selected runs:
 
 - `80d29fc0c6` - appointment-simple
 - `suite-01-9aa345` - reschedule-existing
-- `suite-02-6dc9e2` - cancel-appointment
+- `8ab7a69965` - cancel-appointment
 - `suite-03-4088b0` - weekend-hours
 - `suite-04-12debe` - medication-refill
 - `suite-05-31dab8` - insurance-question
@@ -26,6 +26,8 @@ Primary selected runs:
 - `suite-07-9d7036` - urgent-boundary
 - `suite-08-6f7cc5` - spelling-correction
 - `suite-11-916688` - human-handoff
+- `26a95f83ee` - controlled-refill-boundary
+- `dce98865d9` - holiday-provider-edge
 
 ## Selected Artifacts
 
