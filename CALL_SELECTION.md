@@ -32,16 +32,6 @@ Watch but keep:
 - `suite-09-f85ec3` barge-in: weaker overlap evidence, but covers changed preference/interruption.
 - `suite-11-1cd272` human-handoff: short but complete failed handoff.
 
-Superseded:
-
-- `suite-01-42cb01` reschedule-existing
-- `suite-02-38df50` cancellation
-- `suite-04-e132e4` medication-refill
-- `suite-05-703332` insurance-question
-- `suite-06-34923a` office-logistics
-
-These are retained under `submission/superseded/` to show iteration. The cancellation call was moved there after audit because the caller did not provide its name before cancellation, so it should not be used as evidence against the target agent.
-
 ## Audio Checks
 
 - Primary selected recordings: 12
@@ -49,4 +39,4 @@ These are retained under `submission/superseded/` to show iteration. The cancell
 - Detected pauses over 4 seconds: `d8280b05d6` and `691aba52fd`, both about 4.2 seconds.
 - No primary selected call lacks a matching transcript.
 
-The current primary set balances useful bug evidence with clearer voice interaction. Superseded calls remain in the repo only to show iteration.
+The current primary set balances useful bug evidence with clearer voice interaction.

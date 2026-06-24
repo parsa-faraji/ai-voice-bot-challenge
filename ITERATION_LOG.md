@@ -43,7 +43,7 @@ After that fix, live calls opened `/media` correctly and produced complete recor
 
 ## Final Selection
 
-The primary submission set now has 12 call pairs in `submission/recordings/` and `submission/transcripts/`. Weaker earlier calls were moved to `submission/superseded/` so the repo preserves iteration evidence without making those calls the primary review set.
+The primary submission set now has 12 call pairs in `submission/recordings/` and `submission/transcripts/`. Weaker earlier calls were excluded from the committed submission artifacts after review.
 
 The submission highlights this arc:
 

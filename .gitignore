@@ -21,3 +21,4 @@ artifacts/BUG_REPORT.md
 
 # Local review scratch files; committed submission artifacts live under submission/.
 evaluation/
+submission/superseded/

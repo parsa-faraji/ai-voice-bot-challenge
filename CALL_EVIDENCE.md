@@ -48,8 +48,7 @@ These calls are useful but have context worth noting:
 - `c62b8aa717`: useful refill evidence, but the caller has one slightly clinic-like phrase.
 - `suite-09-f85ec3`: included for changed-preference/barge-in coverage, but it is weaker than the other scenario calls because overlap was limited.
 - `suite-11-1cd272`: shorter than the usual 1-3 minute range, but complete for a handoff-failure scenario.
-- `suite-02-38df50`: moved to superseded after review because the caller did not provide its name before the cancellation flow, making the unsafe-identity finding unfair.
 
 ## Recommendation
 
-The primary evidence set is the 12 calls in `submission/recordings/` and `submission/transcripts/`. The superseded calls under `submission/superseded/` are retained as iteration evidence, not as the primary review set.
+The primary evidence set is the 12 calls in `submission/recordings/` and `submission/transcripts/`.

@@ -29,12 +29,6 @@ Primary selected runs:
 - `suite-10-fd7cf1` - ambiguous request
 - `suite-11-1cd272` - human handoff
 
-## Iteration Evidence
-
-Superseded earlier calls live under `submission/superseded/`. They are retained to show before/after review and iteration, but they are not the primary review set. The original cancellation call is superseded because the caller did not establish its name before the cancellation flow.
-
-The first rough pilot call is retained under ignored local `artifacts/` only and should not be treated as a selected submission call.
-
 ## Selected Artifacts
 
 - `submission/recordings/*.mp3`

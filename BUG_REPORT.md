@@ -2,7 +2,7 @@
 
 These findings come from the primary selected calls in `submission/transcripts/` and `submission/recordings/`. Severity is based on patient impact, safety risk, and likelihood of a failed front-desk workflow. Transcript timestamps are close references for review; the MP3 recordings are the source of truth.
 
-Calls with patient-bot behavior that could contaminate a finding were moved out of the primary set and are not used as bug evidence here.
+Calls with patient-bot behavior that could contaminate a finding are excluded from bug evidence here.
 
 ## 1. Live-agent handoffs route to a dead test-line message
 
