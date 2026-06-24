@@ -10,5 +10,10 @@ def test_scenario_ids_are_unique():
     assert len(ids) == len(set(ids))
 
 
+def test_scenarios_have_voice_profiles():
+    profiles = {scenario.voice_profile for scenario in all_scenarios()}
+    assert profiles == {"female", "male"}
+
+
 def test_get_scenario():
     assert get_scenario("weekend-hours").title == "Weekend and closed-hours edge case"

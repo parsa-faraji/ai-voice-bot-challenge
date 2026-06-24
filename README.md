@@ -72,3 +72,7 @@ Artifacts are written under `artifacts/`:
 - `BUG_REPORT.md`: generated draft bug report for local review
 
 Calls default to a 180-second Twilio time limit (`MAX_CALL_SECONDS`) so a pilot or suite call cannot run open-ended. `run-suite` waits for each call to complete before starting the next one; overlapping calls usually sound worse and make artifacts harder to review.
+
+## Voice Tuning
+
+Twilio carries the bidirectional phone audio, but the caller's voice and turn-taking come from the Realtime session. Each scenario has a male or female voice profile, selected through `OPENAI_REALTIME_MALE_VOICE` and `OPENAI_REALTIME_FEMALE_VOICE`; `OPENAI_REALTIME_VOICE` is only the fallback. Use `VAD_SILENCE_DURATION_MS` to tune pacing; higher values make the patient wait longer after the practice agent stops speaking, while lower values make the patient respond faster.

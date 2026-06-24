@@ -30,10 +30,15 @@ class Settings:
     artifacts_dir: Path
     realtime_model: str = "gpt-realtime-2"
     realtime_voice: str = "marin"
+    realtime_female_voice: str = "marin"
+    realtime_male_voice: str = "cedar"
     realtime_session_style: str = "ga"
     analysis_model: str = "gpt-5.5"
     transcription_model: str = "gpt-4o-transcribe"
     initial_greeting_delay_ms: int = 1200
+    vad_threshold: float = 0.45
+    vad_prefix_padding_ms: int = 350
+    vad_silence_duration_ms: int = 850
     run_suite_spacing_seconds: int = 45
     max_call_seconds: int = 180
 
@@ -72,10 +77,15 @@ def load_settings(env_file: str | Path | None = ".env") -> Settings:
         artifacts_dir=Path(os.getenv("ARTIFACTS_DIR", "artifacts")),
         realtime_model=os.getenv("OPENAI_REALTIME_MODEL", "gpt-realtime-2"),
         realtime_voice=os.getenv("OPENAI_REALTIME_VOICE", "marin"),
+        realtime_female_voice=os.getenv("OPENAI_REALTIME_FEMALE_VOICE", "marin"),
+        realtime_male_voice=os.getenv("OPENAI_REALTIME_MALE_VOICE", "cedar"),
         realtime_session_style=os.getenv("OPENAI_REALTIME_SESSION_STYLE", "ga"),
         analysis_model=os.getenv("OPENAI_ANALYSIS_MODEL", "gpt-5.5"),
         transcription_model=os.getenv("OPENAI_TRANSCRIPTION_MODEL", "gpt-4o-transcribe"),
         initial_greeting_delay_ms=int(os.getenv("INITIAL_GREETING_DELAY_MS", "1200")),
+        vad_threshold=float(os.getenv("VAD_THRESHOLD", "0.45")),
+        vad_prefix_padding_ms=int(os.getenv("VAD_PREFIX_PADDING_MS", "350")),
+        vad_silence_duration_ms=int(os.getenv("VAD_SILENCE_DURATION_MS", "850")),
         run_suite_spacing_seconds=int(os.getenv("RUN_SUITE_SPACING_SECONDS", "45")),
         max_call_seconds=int(os.getenv("MAX_CALL_SECONDS", "180")),
     )

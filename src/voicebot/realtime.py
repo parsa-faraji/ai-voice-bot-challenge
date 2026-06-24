@@ -33,6 +33,7 @@ def session_update_event(settings: Settings, scenario: Scenario) -> dict[str, An
     style = settings.realtime_session_style.lower()
     if style == "legacy":
         return _legacy_session_update_event(settings, scenario)
+    voice = scenario_voice(settings, scenario)
     return {
         "type": "session.update",
         "session": {
@@ -45,16 +46,16 @@ def session_update_event(settings: Settings, scenario: Scenario) -> dict[str, An
                     "transcription": {"model": settings.transcription_model},
                     "turn_detection": {
                         "type": "server_vad",
-                        "threshold": 0.45,
-                        "prefix_padding_ms": 350,
-                        "silence_duration_ms": 650,
+                        "threshold": settings.vad_threshold,
+                        "prefix_padding_ms": settings.vad_prefix_padding_ms,
+                        "silence_duration_ms": settings.vad_silence_duration_ms,
                         "create_response": True,
                         "interrupt_response": True,
                     },
                 },
                 "output": {
                     "format": {"type": "audio/pcmu"},
-                    "voice": settings.realtime_voice,
+                    "voice": voice,
                 },
             },
             "reasoning": {"effort": "low"},
@@ -63,25 +64,34 @@ def session_update_event(settings: Settings, scenario: Scenario) -> dict[str, An
 
 
 def _legacy_session_update_event(settings: Settings, scenario: Scenario) -> dict[str, Any]:
+    voice = scenario_voice(settings, scenario)
     return {
         "type": "session.update",
         "session": {
             "instructions": build_patient_instructions(scenario),
             "modalities": ["text", "audio"],
-            "voice": settings.realtime_voice,
+            "voice": voice,
             "input_audio_format": "g711_ulaw",
             "output_audio_format": "g711_ulaw",
             "input_audio_transcription": {"model": settings.transcription_model},
             "turn_detection": {
                 "type": "server_vad",
-                "threshold": 0.45,
-                "prefix_padding_ms": 350,
-                "silence_duration_ms": 650,
+                "threshold": settings.vad_threshold,
+                "prefix_padding_ms": settings.vad_prefix_padding_ms,
+                "silence_duration_ms": settings.vad_silence_duration_ms,
                 "create_response": True,
                 "interrupt_response": True,
             },
         },
     }
+
+
+def scenario_voice(settings: Settings, scenario: Scenario) -> str:
+    if scenario.voice_profile == "female":
+        return settings.realtime_female_voice
+    if scenario.voice_profile == "male":
+        return settings.realtime_male_voice
+    return settings.realtime_voice
 
 
 def input_audio_append_event(payload_base64: str) -> dict[str, str]:

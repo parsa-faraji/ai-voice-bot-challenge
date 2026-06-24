@@ -1,7 +1,7 @@
 from pathlib import Path
 
 from voicebot.config import TARGET_TEST_NUMBER, Settings
-from voicebot.realtime import input_audio_append_event, session_update_event
+from voicebot.realtime import input_audio_append_event, scenario_voice, session_update_event
 from voicebot.scenarios import get_scenario
 
 
@@ -24,12 +24,40 @@ def test_ga_session_update_contains_audio_and_scenario_instructions():
     assert "lisinopril" in event["session"]["instructions"]
     assert event["session"]["audio"]["input"]["format"]["type"] == "audio/pcmu"
     assert event["session"]["audio"]["output"]["format"]["type"] == "audio/pcmu"
+    assert event["session"]["audio"]["output"]["voice"] == "cedar"
 
 
 def test_legacy_session_update_can_be_selected():
     event = session_update_event(make_settings("legacy"), get_scenario("medication-refill"))
     assert event["session"]["input_audio_format"] == "g711_ulaw"
     assert event["session"]["output_audio_format"] == "g711_ulaw"
+    assert event["session"]["voice"] == "cedar"
+
+
+def test_scenario_voice_matches_patient_profile():
+    settings = make_settings()
+
+    assert scenario_voice(settings, get_scenario("appointment-simple")) == "marin"
+    assert scenario_voice(settings, get_scenario("office-logistics")) == "cedar"
+
+
+def test_session_update_uses_configured_vad_timing():
+    settings = make_settings()
+    settings = Settings(
+        **{
+            **settings.__dict__,
+            "vad_threshold": 0.5,
+            "vad_prefix_padding_ms": 400,
+            "vad_silence_duration_ms": 950,
+        }
+    )
+
+    event = session_update_event(settings, get_scenario("appointment-simple"))
+    turn_detection = event["session"]["audio"]["input"]["turn_detection"]
+
+    assert turn_detection["threshold"] == 0.5
+    assert turn_detection["prefix_padding_ms"] == 400
+    assert turn_detection["silence_duration_ms"] == 950
 
 
 def test_audio_append_event_passes_twilio_payload_through():
