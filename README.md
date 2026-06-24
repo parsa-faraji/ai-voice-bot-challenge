@@ -31,7 +31,7 @@ cloudflared tunnel --url http://localhost:8000
 Set `PUBLIC_BASE_URL` in `.env` to the HTTPS tunnel URL, then verify:
 
 ```bash
-uv run voicebot doctor
+uv run voicebot doctor --strict
 uv run voicebot twiml appointment-simple
 ```
 
@@ -62,6 +62,7 @@ After calls complete:
 
 ```bash
 uv run voicebot fetch-artifacts
+uv run voicebot evaluate-transcripts artifacts/transcripts
 uv run voicebot analyze
 ```
 
@@ -70,6 +71,8 @@ Artifacts are written under `artifacts/`:
 - `recordings/*.mp3`: Twilio call recordings
 - `transcripts/*.txt`: speaker-labeled transcripts reconstructed from Realtime transcript events
 - `BUG_REPORT.md`: generated draft bug report for local review
+
+Use `evaluate-transcripts` before promoting calls into `submission/`. It screens for patient-bot issues such as missed identity answers, unnatural filler, staff-like phrasing, delayed DOB/spelling answers, overlong turns, and substantive comments after the agent has ended the call.
 
 Calls default to a 180-second Twilio time limit (`MAX_CALL_SECONDS`) so a pilot or suite call cannot run open-ended. `run-suite` waits for each call to complete before starting the next one; overlapping calls usually sound worse and make artifacts harder to review.
 

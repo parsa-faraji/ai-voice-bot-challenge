@@ -11,6 +11,8 @@ from rich.table import Table
 from .analyzer import generate_bug_report
 from .artifacts import ArtifactStore
 from .config import ConfigError, load_settings, require_live_call_settings
+from .diagnostics import validate_public_tunnel
+from .evaluator import evaluate_path, format_findings
 from .scenarios import all_scenarios, get_scenario, scenario_markdown
 from .twilio_client import download_recordings, place_assessment_call, wait_for_call_completion
 from .twiml import build_twiml
@@ -20,7 +22,14 @@ console = Console()
 
 
 @app.command()
-def doctor() -> None:
+def doctor(
+    check_public: bool = typer.Option(
+        True,
+        "--check-public/--no-check-public",
+        help="Check that the configured public tunnel serves /health and /twiml.",
+    ),
+    strict: bool = typer.Option(False, "--strict", help="Exit nonzero if any doctor check fails."),
+) -> None:
     """Check local configuration without placing a call."""
     settings = load_settings()
     table = Table("Check", "Value")
@@ -31,12 +40,25 @@ def doctor() -> None:
     table.add_row("Realtime model", settings.realtime_model)
     table.add_row("Realtime session style", settings.realtime_session_style)
     console.print(table)
+    failed_checks = False
     try:
         require_live_call_settings(settings)
     except ConfigError as exc:
         console.print(f"[yellow]Live call settings incomplete: {exc}[/yellow]")
+        failed_checks = True
     else:
         console.print("[green]Live call settings are present.[/green]")
+    if check_public:
+        scenario = get_scenario("appointment-simple")
+        diagnostics = validate_public_tunnel(settings, scenario)
+        diagnostics_table = Table("Public check", "Status", "Detail")
+        for check in diagnostics:
+            status = "[green]OK[/green]" if check.ok else "[red]FAIL[/red]"
+            diagnostics_table.add_row(check.name, status, check.detail)
+            failed_checks = failed_checks or not check.ok
+        console.print(diagnostics_table)
+    if strict and failed_checks:
+        raise typer.Exit(1)
 
 
 @app.command("scenarios")
@@ -160,6 +182,25 @@ def fetch_artifacts(
     if transcripts:
         paths = store.rebuild_transcripts()
         console.print(f"Rebuilt {len(paths)} transcript files.")
+
+
+@app.command("evaluate-transcripts")
+def evaluate_transcripts(
+    path: Path = typer.Argument(
+        Path("artifacts/transcripts"),
+        help="Transcript file or directory to evaluate.",
+    ),
+    fail_on_findings: bool = typer.Option(
+        False,
+        "--fail-on-findings",
+        help="Exit nonzero if any transcript quality finding is detected.",
+    ),
+) -> None:
+    """Lint transcripts for patient-bot quality issues before selecting calls."""
+    findings = evaluate_path(path)
+    console.print(format_findings(findings))
+    if fail_on_findings and findings:
+        raise typer.Exit(1)
 
 
 @app.command()
