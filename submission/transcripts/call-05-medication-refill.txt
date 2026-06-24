@@ -1,4 +1,4 @@
-Call transcript: suite-04-12debe-CA7cf387b8c7126460bf05ad683b73bb52
+Call transcript: call-05-medication-refill
 Speakers: PatientBot is this caller; AthenaAgent is the assessment target.
 
 [00:13] AthenaAgent: This call may be recorded for quality and training purposes. Thanks for calling Pivot Point Orthopedics, part of Pretty Good AI.

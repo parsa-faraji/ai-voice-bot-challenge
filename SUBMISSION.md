@@ -1,43 +1,49 @@
 # Submission Manifest
 
-## Caller Number
+## Phone Numbers
 
-All live assessment calls were placed from:
+All live assessment calls used one caller number:
 
 `+18339589786`
 
-All calls targeted only:
+All calls targeted the assessment line:
 
 `+18054398008`
 
-## Primary Selected Calls
+The code is hard-locked to that target number.
 
-Use the 12 calls in `submission/recordings/` and `submission/transcripts/` for final review. They cover scheduling, rescheduling, cancellation, medication refill, controlled-medication refill boundaries, insurance, office logistics, urgent triage, demographic correction, weekend/holiday/provider scheduling, and human handoff.
+## Evidence Set
 
-Primary selected runs:
+The final evidence set contains 12 call pairs:
 
-- `80d29fc0c6` - appointment-simple
-- `suite-01-9aa345` - reschedule-existing
-- `8ab7a69965` - cancel-appointment
-- `suite-03-4088b0` - weekend-hours
-- `suite-04-12debe` - medication-refill
-- `suite-05-31dab8` - insurance-question
-- `suite-06-e55a17` - office-logistics
-- `suite-07-9d7036` - urgent-boundary
-- `suite-08-6f7cc5` - spelling-correction
-- `suite-11-916688` - human-handoff
-- `26a95f83ee` - controlled-refill-boundary
-- `dce98865d9` - holiday-provider-edge
-
-## Selected Artifacts
-
-- `submission/recordings/*.mp3`
-- `submission/transcripts/*.txt`
+- `submission/recordings/call-01-appointment-simple.mp3`
+- `submission/transcripts/call-01-appointment-simple.txt`
+- matching files for `call-02` through `call-12`
 - `submission/BUG_REPORT.md`
-- `BUG_REPORT.md`
-- `CALL_SELECTION.md`
-- `CALL_EVIDENCE.md`
-- `ITERATION_LOG.md`
-- `ARCHITECTURE.md`
-- `SCENARIOS.md`
-- `README.md`
+
+The call numbers are the review order. The names describe the intended probe, while `CALL_SELECTION.md` explains what each call actually exercised.
+
+| Call | Intended probe | Submission role |
+| --- | --- | --- |
+| `call-01-appointment-simple` | New appointment | DOB mismatch and handoff evidence |
+| `call-02-reschedule-existing` | Reschedule existing appointment | Verification loop and handoff evidence |
+| `call-03-cancel-appointment` | Cancel appointment | Verification loop and handoff evidence |
+| `call-04-weekend-hours` | Sunday scheduling | Weekend-hours answer and handoff evidence |
+| `call-05-medication-refill` | Medication refill | Refill intake and verification/handoff evidence |
+| `call-06-insurance-question` | Insurance question | Clean comparison call |
+| `call-07-office-logistics` | Office logistics | Clean comparison call |
+| `call-08-urgent-boundary` | Urgent symptom boundary | Safety-triage evidence |
+| `call-09-demographic-correction` | Demographic correction | Read-back and handoff evidence |
+| `call-10-human-handoff` | Human handoff | Direct handoff evidence |
+| `call-11-controlled-refill-boundary` | Controlled-medication refill | Controlled-substance and handoff evidence |
+| `call-12-holiday-provider-edge` | Holiday/provider scheduling | Clean edge comparison call |
+
+## Review Files
+
+- `README.md`: setup and run instructions
+- `ARCHITECTURE.md`: system design and tradeoffs
+- `SCENARIOS.md`: scenario coverage
+- `CALL_SELECTION.md`: why each submitted call was kept
+- `CALL_EVIDENCE.md`: evidence checks and call durations
+- `BUG_REPORT.md`: curated findings
+- `submission/`: recordings, transcripts, and submitted bug report

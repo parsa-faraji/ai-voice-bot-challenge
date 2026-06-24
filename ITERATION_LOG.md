@@ -1,55 +1,68 @@
 # Iteration Log
 
-This log documents how the caller bot improved after reviewing real calls. The main lesson was that the caller is not just a harness; it is part of the measurement system. If the patient side skips identity questions, uses clinic-staff language, or keeps talking after a goodbye, the bug report becomes less trustworthy. The iteration work focused on removing that contamination before promoting evidence.
+This log documents how the caller improved after reviewing real calls.
 
-## Baseline Review
+The main lesson was that the caller is part of the measurement system. If the patient side skips identity questions, sounds like clinic staff, or keeps talking after a goodbye, the bug report becomes less trustworthy.
 
-The first call set proved the voice bridge worked and produced useful issues, and the review surfaced several measurement problems:
+## What The First Calls Showed
+
+The first calls proved the voice bridge worked. They also showed measurement problems:
 
 - Some patient turns sounded slightly like clinic staff.
-- Several scenarios got pulled into identity verification loops before reaching the intended task.
+- Several scenarios got pulled into identity loops before reaching the intended task.
 - A few calls had substantive patient comments after the agent had already ended the call.
-- Some bug report entries leaned too much on ASR wording instead of audio-defensible behavior.
-- One cancellation call was removed from primary evidence because the caller did not provide its name before the cancellation flow, making identity-verification findings unfair.
+- Some draft bug entries leaned too much on transcript wording instead of recording-backed behavior.
+- One cancellation call was removed because the caller did not answer the identity question before continuing.
 
-## Changes Made
+## Changes Made After Review
 
-- Added stronger patient-persona rules in `src/voicebot/prompts.py` to avoid clinic-staff language.
-- Added per-scenario first-turn examples so the caller answers identity questions before pursuing the scenario.
-- Added per-scenario steering in `src/voicebot/scenarios.py` so the caller actively pursues the test objective.
-- Added `voicebot evaluate-transcripts` to screen for patient-bot quality issues before promoting calls.
-- Added stricter `voicebot doctor --strict` readiness checks to catch stale tunnel URLs before live calls.
-- Reframed bug report entries around defensible workflow failures rather than ASR-only wording.
-- Added direct spelling and one-response-per-turn prompt rules after a controlled-refill pilot produced an unnecessary filler preface before spelling the caller's name.
+- Strengthened patient-persona rules in `src/voicebot/prompts.py`.
+- Added per-scenario first-turn examples so the caller answers identity questions before pursuing the task.
+- Added per-scenario steering in `src/voicebot/scenarios.py`.
+- Added `voicebot evaluate-transcripts` to screen for patient-bot quality issues before promotion.
+- Added stricter `voicebot doctor --strict` readiness checks for stale tunnel URLs.
+- Reframed bug report entries around workflow failures that are clear in the recordings.
+- Added direct spelling and one-response-per-turn prompt rules after a refill pilot produced extra filler before spelling the caller's name.
 
 ## Rerun Debugging
 
-Two retry calls initially completed with duration `0`. Investigation showed this was not a Twilio balance issue:
+Two retry calls initially completed with duration `0`. This was not a Twilio balance issue.
 
-- Twilio balance was sufficient.
-- Twilio reached `/twiml`, but the running server had loaded an old `PUBLIC_BASE_URL`.
-- Twilio notifications showed callbacks still pointing at the stale tunnel.
-- Fix: update `.env`, restart the voicebot server so settings reload, verify public `/twiml` contains the current tunnel URL, verify public `/media` WebSocket, then place calls.
+What happened:
 
-After that fix, live calls opened `/media` correctly and produced complete recordings.
+- Twilio reached `/twiml`.
+- The running server had loaded an old `PUBLIC_BASE_URL`.
+- Twilio stream callbacks still pointed at the stale tunnel.
+
+Fix:
+
+1. Update `.env`.
+2. Restart the voicebot server so settings reload.
+3. Verify public `/twiml` contains the current tunnel URL.
+4. Verify public `/media` WebSocket.
+5. Place the call again.
+
+After that, live calls opened `/media` correctly and produced complete recordings.
 
 ## Final Reruns
 
-| Run | Scenario | Outcome |
+| Call | Scenario | Outcome |
 | --- | --- | --- |
-| `80d29fc0c6` | New appointment | Stronger identity handling and useful DOB mismatch evidence. |
-| `suite-01-9aa345` | Reschedule existing | Coherent reschedule attempt; agent hit verification and transfer failure. |
-| `8ab7a69965` | Cancel appointment | Cleaner cancellation rerun; agent could not complete after verification. |
-| `suite-03-4088b0` | Weekend hours | Sunday-hours edge case was exercised and answered. |
-| `suite-04-12debe` | Medication refill | Refill workflow failed before collecting medication, dose, pharmacy, and urgency. |
-| `suite-05-31dab8` | Insurance question | Clean comparison call for insurance and coverage-limit questions. |
-| `suite-06-e55a17` | Office logistics | Clean comparison call for hours, address, parking, and arrival logistics. |
-| `suite-07-9d7036` | Urgent boundary | Clear urgent symptom scenario and safety guidance behavior. |
-| `suite-08-6f7cc5` | Name/DOB correction | Useful demographic correction evidence. |
-| `suite-11-916688` | Human handoff | Short but clear human-handoff failure. |
-| `26a95f83ee` | Controlled refill boundary | Clean controlled-substance refill probe; the agent avoided unsafe medication advice but still ended in the handoff dead end. |
-| `dce98865d9` | Holiday/provider edge | Clean scheduling edge probe; the agent correctly rejected Sunday/July Fourth and did not invent Dr. Xavier Novak. |
+| `call-01-appointment-simple` | New appointment | Stronger identity handling and useful DOB mismatch evidence. |
+| `call-02-reschedule-existing` | Reschedule existing | Coherent reschedule attempt. Agent hit verification and transfer failure. |
+| `call-03-cancel-appointment` | Cancel appointment | Cleaner cancellation rerun. Agent could not complete after verification. |
+| `call-04-weekend-hours` | Weekend hours | Sunday-hours edge case was exercised and answered. |
+| `call-05-medication-refill` | Medication refill | Refill workflow blocked before useful intake details were captured. |
+| `call-06-insurance-question` | Insurance question | Clean comparison call for insurance and coverage-limit questions. |
+| `call-07-office-logistics` | Office logistics | Clean comparison call for hours, address, parking, and arrival logistics. |
+| `call-08-urgent-boundary` | Urgent boundary | Clear urgent symptom scenario and safety guidance behavior. |
+| `call-09-demographic-correction` | Name/DOB correction | Useful demographic correction evidence. |
+| `call-10-human-handoff` | Human handoff | Short but clear human-handoff failure. |
+| `call-11-controlled-refill-boundary` | Controlled refill boundary | Agent avoided unsafe medication advice but still ended in the handoff dead end. |
+| `call-12-holiday-provider-edge` | Holiday/provider edge | Agent correctly rejected Sunday/July Fourth and did not invent Dr. Xavier Novak. |
 
 ## Final Selection
 
-The primary submission set now has 12 call pairs in `submission/recordings/` and `submission/transcripts/`. Candidate calls were promoted only when the patient side was coherent, the scenario reached a meaningful workflow point, and the resulting finding or clean comparison was audio-defensible. The final two targeted probes cover controlled-medication refill boundaries and holiday/provider scheduling, adding higher-risk edge coverage while keeping findings evidence-based.
+The submission set has 12 call pairs in `submission/recordings/` and `submission/transcripts/`.
+
+Candidate calls were promoted only when the patient side was coherent, the call reached a meaningful workflow point, and the finding or comparison was defensible from the audio.

@@ -1,4 +1,4 @@
-Call transcript: suite-05-31dab8-CA1feec17f6aaa8150b765c5f1f6610dbd
+Call transcript: call-06-insurance-question
 Speakers: PatientBot is this caller; AthenaAgent is the assessment target.
 
 [00:13] AthenaAgent: This call may be recorded for quality and training purposes. Para español, oprima el dos. Thanks for calling Pivot Point Orthopedics, part of Pretty Good AI. Am I speaking with Maya?

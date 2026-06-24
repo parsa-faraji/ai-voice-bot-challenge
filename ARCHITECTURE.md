@@ -1,5 +1,45 @@
 # Architecture
 
-The architecture is built around the challenge's first grading gate: the calls have to sound like real conversations before the bug report matters. Twilio places the outbound call, but the code is hard-locked to the assessment number so a bad config cannot dial anywhere else. The TwiML response uses `<Connect><Stream>` to open a bidirectional WebSocket to the FastAPI server, which forwards the practice agent's 8 kHz mulaw audio into an OpenAI Realtime session and streams the generated patient audio back to Twilio. I chose Realtime speech-to-speech instead of a separate STT -> LLM -> TTS pipeline because lower latency, prosody, and turn-taking matter more here than exact word-level determinism. The tradeoff is that the caller needs stricter prompting and post-call review, so the bridge also sends Twilio `clear` and OpenAI `response.cancel` events when the target agent starts speaking to reduce overlap.
+The main design choice was to optimize for the part of the challenge that gets judged first: whether the caller sounds like a real patient.
 
-The caller is hybrid scripted plus adaptive: every scenario defines a patient identity, voice profile, first-turn identity response, facts, stressors, and success criteria, then the Realtime model decides the actual wording turn by turn. A rigid script would be easier to audit but would sound like a benchmark runner; a fully free agent would sound natural but might never reach the test objective. The scenario layer is the compromise: enough structure to steer toward scheduling, refill, triage, handoff, and edge-case workflows, while still letting the patient answer naturally. I treat the MP3 recording as the source of truth, not the transcript. Realtime transcript events are useful for speaker-labeled text and first-pass analysis, but calls are promoted only after transcript linting and audio review. The analyzer can draft findings, but the submitted bug report is curated so clean agent behavior stays as comparison coverage and only audio-defensible product issues become bugs.
+A bot that places calls but feels scripted would not be useful for this assessment. I used Twilio for outbound calling and recording, and OpenAI Realtime for the live patient voice.
+
+## Call Flow
+
+`Twilio outbound call -> TwiML <Connect><Stream> -> FastAPI /media -> OpenAI Realtime -> Twilio media stream`
+
+Twilio places the outbound call and records both sides.
+
+The FastAPI server returns TwiML with `<Connect><Stream>`, then handles the live media WebSocket at `/media`. The bridge forwards Twilio's G.711 audio chunks to OpenAI Realtime and streams generated patient audio back to Twilio.
+
+## Stack Choices
+
+- **Python + uv**: simple packaging, repeatable setup, and a single `voicebot` CLI entry point.
+- **Typer + Rich**: readable command-line workflows for `doctor`, `call`, `run-suite`, `fetch-artifacts`, `evaluate-transcripts`, and `analyze`.
+- **FastAPI + uvicorn**: a small web server for TwiML, health checks, stream-status callbacks, and the media WebSocket.
+- **Twilio Programmable Voice**: real outbound phone calls, dual-channel MP3 recordings, and bidirectional media streaming.
+- **OpenAI Realtime**: live patient speech with lower latency and more natural prosody than a separate STT -> LLM -> TTS pipeline.
+
+Realtime was a tradeoff.
+
+A traditional pipeline would give more control over exact wording. It would also add latency and make turn-taking harder.
+
+Realtime gives better pacing, so I accepted less deterministic wording and added stricter scenario prompts, transcript linting, and audio review.
+
+Because Twilio places real outbound calls, the code is hard-locked to `+18054398008`.
+
+## Caller Design
+
+The caller is hybrid scripted plus adaptive.
+
+Each scenario defines the patient identity, voice profile, first-turn identity response, facts, stressors, and success criteria. The model chooses the actual wording during the call.
+
+That keeps the patient flexible enough to answer naturally while still steering toward scheduling, refills, triage, handoff, and edge cases.
+
+## Evidence Discipline
+
+MP3 recordings are the source of truth.
+
+Realtime transcript events are used for speaker-labeled transcripts and first-pass analysis, but a transcript is not treated as proof by itself. `evaluate-transcripts` screens for patient-bot issues before a call is promoted.
+
+The analyzer can draft findings, but the submitted bug report only includes audio-defensible product issues.

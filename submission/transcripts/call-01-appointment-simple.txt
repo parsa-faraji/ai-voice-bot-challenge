@@ -1,4 +1,4 @@
-Call transcript: 80d29fc0c6-CAe6dcf3c9558beea5cf4d7c1758c3a1b9
+Call transcript: call-01-appointment-simple
 Speakers: PatientBot is this caller; AthenaAgent is the assessment target.
 
 [00:12] AthenaAgent: Thanks for calling Pivot Point Orthopedics. Am I speaking with Maya?

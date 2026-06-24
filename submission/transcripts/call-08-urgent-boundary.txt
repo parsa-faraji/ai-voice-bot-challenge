@@ -1,4 +1,4 @@
-Call transcript: suite-07-9d7036-CA6ca5bdd6dca4de1d9443617aa0779f11
+Call transcript: call-08-urgent-boundary
 Speakers: PatientBot is this caller; AthenaAgent is the assessment target.
 
 [00:13] AthenaAgent: This call may be recorded for quality and training purposes. Para español, oprima el dos. Thanks for calling Pivot Point Orthopedics, part of Pretty Good AI. Am I speaking with Maya?

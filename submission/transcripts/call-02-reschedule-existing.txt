@@ -1,4 +1,4 @@
-Call transcript: suite-01-9aa345-CA01942a2e5a7f5a00a26d7825756a06fb
+Call transcript: call-02-reschedule-existing
 Speakers: PatientBot is this caller; AthenaAgent is the assessment target.
 
 [00:12] AthenaAgent: This call may be recorded for quality and training purposes. Para español, oprima el dos.

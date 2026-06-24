@@ -1,4 +1,4 @@
-Call transcript: dce98865d9-CAf2894acf5efae74ca8f30e57a4036585
+Call transcript: call-12-holiday-provider-edge
 Speakers: PatientBot is this caller; AthenaAgent is the assessment target.
 
 [00:13] AthenaAgent: Thanks for calling Pivot Point Orthopedics, part of Pretty Good AI. Am I speaking with Maya?

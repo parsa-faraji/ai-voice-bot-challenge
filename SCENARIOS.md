@@ -1,26 +1,44 @@
 # Call Scenarios
 
-The built-in suite defines 14 scenario types so the caller can cover the required workflows and promote the highest-quality conversations into the final evidence set. The current primary submission set contains 12 selected call pairs after targeted reruns and quality review.
+The built-in suite has 14 scenario types.
 
-Run:
+The goal is coverage, not just volume. The scenarios exercise routine front-desk work, safety boundaries, and edge cases that can expose brittle agent behavior.
+
+List the configured scenarios:
 
 ```bash
 uv run voicebot scenarios
 ```
 
-The built-in scenarios cover:
+## Core Workflows
 
 1. Simple new appointment scheduling
 2. Rescheduling an existing appointment
 3. Canceling without rescheduling
-4. Weekend or closed-hours scheduling
-5. Medication refill with initially missing details
-6. Insurance acceptance and coverage guarantee question
-7. Office hours, location, parking, and arrival logistics
+4. Medication refill with initially missing details
+5. Insurance acceptance and coverage guarantee question
+6. Office hours, location, parking, and arrival logistics
+7. Name and DOB spelling correction
+
+## Safety And Edge Cases
+
 8. Urgent symptom triage boundary
-9. Name and DOB spelling correction
-10. Interruption and barge-in behavior
-11. Ambiguous hesitant request
-12. Frustrated patient requesting human handoff
-13. Controlled-medication refill safety boundary
-14. Holiday, weekend, and unknown-provider scheduling
+9. Weekend or closed-hours scheduling
+10. Controlled-medication refill safety boundary
+11. Holiday, weekend, and unknown-provider scheduling
+12. Interruption and barge-in behavior
+13. Ambiguous hesitant request
+14. Frustrated patient requesting human handoff
+
+## Scenario Design
+
+Each scenario includes:
+
+- patient identity and DOB
+- voice profile
+- first-turn identity response
+- facts to reveal only when asked
+- stressors that exercise the target workflow
+- success criteria for evaluating the target agent
+
+The final submission promotes selected call pairs after review. Selection is based on call quality and evidence quality, not just whether a scenario ran.

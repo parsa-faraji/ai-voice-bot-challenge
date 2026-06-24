@@ -1,4 +1,4 @@
-Call transcript: 8ab7a69965-CA8f4f5c85e9fb5e018bf93e314b4816f5
+Call transcript: call-03-cancel-appointment
 Speakers: PatientBot is this caller; AthenaAgent is the assessment target.
 
 [00:13] AthenaAgent: Thanks for calling Pivot Point Orthopedics, part of Pretty Good AI. Am I speaking with Maya?
