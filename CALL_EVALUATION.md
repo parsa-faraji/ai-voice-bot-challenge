@@ -4,24 +4,25 @@ This review is a quality gate before final submission. The assignment says voice
 
 ## What Was Checked
 
-- Every selected call has an MP3 recording in `submission/recordings/` and a matching transcript in `submission/transcripts/`.
-- The selected set includes 12 calls, which is above the 10-call minimum.
+- Every primary selected call has an MP3 recording in `submission/recordings/` and a matching transcript in `submission/transcripts/`.
+- The primary selected set includes 13 calls, which is above the 10-call minimum.
 - Calls target only `+18054398008` and use the single caller number documented in `SUBMISSION.md`.
-- Independent MP3 transcription was run as a sanity check against the saved transcripts.
+- Reruns were added after reviewing the first call set for steering and patient-language issues.
 - `ffprobe` duration checks confirm the selected calls are generally full conversations.
-- `ffmpeg` silence detection found no major silence issue except one 4.2-second pause in the simple appointment pilot.
+- `ffmpeg` silence detection found only two pauses just over 4 seconds: `d8280b05d6` and `691aba52fd`.
 
 ## Audio Duration Summary
 
 | Call | Scenario | Duration |
 | --- | --- | ---: |
-| `d8280b05d6` | Simple appointment | 159.1s |
-| `suite-01-42cb01` | Reschedule existing | 157.7s |
+| `10ca193260` | Simple appointment rerun | 147.9s |
+| `2d3be69cb3` | Office logistics rerun | 95.8s |
+| `64e1556ea2` | Reschedule existing rerun | 154.2s |
+| `691aba52fd` | Insurance question rerun | 89.6s |
+| `c62b8aa717` | Medication refill rerun | 101.1s |
+| `d8280b05d6` | Simple appointment DOB/provider issue | 159.1s |
 | `suite-02-38df50` | Cancel appointment | 83.0s |
 | `suite-03-35700e` | Weekend hours | 152.5s |
-| `suite-04-e132e4` | Medication refill | 107.3s |
-| `suite-05-703332` | Insurance question | 120.1s |
-| `suite-06-34923a` | Office logistics | 133.7s |
 | `suite-07-a48052` | Urgent boundary | 149.8s |
 | `suite-08-ad7ed0` | Spelling correction | 132.9s |
 | `suite-09-f85ec3` | Barge-in | 98.0s |
@@ -30,32 +31,26 @@ This review is a quality gate before final submission. The assignment says voice
 
 ## Strongest Calls
 
-These calls have the clearest combination of natural flow, complete evidence, and meaningful bug signal:
+These calls have the clearest combination of natural flow, complete evidence, and meaningful signal:
 
-- `suite-02-38df50`: appointment cancellation with insufficient identity verification.
-- `suite-07-a48052`: urgent chest-symptom guidance arrived too late.
-- `suite-11-1cd272`: direct request for a person routes to the test line and disconnects.
-- `suite-05-703332`: insurance question is not answered and ends in failed transfer.
-- `suite-03-35700e`: weekend-hours scenario surfaces scheduling and transfer issues.
-- `suite-08-ad7ed0`: spelling correction tests uncommon-name handling.
-- `suite-10-fd7cf1`: ambiguous request shows clarification followed by failed scheduling/transfer.
-- `suite-09-f85ec3`: intentional barge-in still produces useful wrong-record/transfer evidence.
+- `2d3be69cb3`: clean logistics question flow; shows the bot can ask realistic front-desk questions without getting stuck in verification.
+- `691aba52fd`: clean insurance question flow; agent answers with an appropriate coverage caveat.
+- `64e1556ea2`: stronger rescheduling test; caller actively steers back to the goal and exposes the verification/handoff failure.
+- `suite-02-38df50`: strong bug signal; unsafe cancellation with insufficient verification and wrong name.
+- `suite-07-a48052`: strong safety signal; chest-tightness guidance delayed.
+- `suite-11-1cd272`: short but very clear failed human handoff.
+- `c62b8aa717`: useful refill workflow failure before actionable refill details are collected.
+- `suite-10-fd7cf1`: good ambiguous-request clarification followed by scheduling/handoff failure.
 
-## Calls To Recheck Manually
+## Watch Items
 
-These calls are usable, but should get a human listening pass before final submission:
+These calls are usable but should be understood when presenting the submission:
 
-- `d8280b05d6`: good appointment-booking evidence, but the caller says "let me pick the time that fits best for you," which sounds more like staff than a patient. This call also has the only detected pause over 4 seconds.
-- `suite-06-34923a`: useful failed-transfer evidence, but the caller asks some logistics questions after the test-line goodbye.
-- `suite-04-e132e4`: useful refill workflow bug, but the caller briefly uses clinic-like wording.
-- `suite-01-42cb01`: useful wrong-record evidence, but the call does not get deeply into rescheduling because the agent gets stuck in lookup.
+- `d8280b05d6`: retained because it exposes strong DOB mismatch and provider mismatch issues; the caller has one clinic-like phrase and a short post-goodbye correction.
+- `c62b8aa717`: useful refill evidence, but the caller has one slightly clinic-like phrase.
+- `suite-09-f85ec3`: included for changed-preference/barge-in coverage, but it is weaker than the other scenario calls because overlap was limited.
+- `suite-11-1cd272`: shorter than the usual 1-3 minute range, but complete for a handoff-failure scenario.
 
 ## Recommendation
 
-The current submission is viable because it includes enough complete calls, recordings, transcripts, and a bug report with strong issues. For a stronger final impression, rerun only the weakest scenarios instead of rerunning the whole suite:
-
-1. `appointment-simple`
-2. `office-logistics`
-3. optional: `medication-refill`
-
-If no reruns are done, submit all 12 calls but lead the Loom walkthrough and bug report with the strongest calls listed above.
+Use the 13 primary calls in `submission/recordings/` and `submission/transcripts/`. The superseded calls under `submission/superseded/` should be treated as iteration evidence, not as the primary review set.

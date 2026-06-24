@@ -92,6 +92,7 @@ Calls default to a 180-second Twilio time limit (`MAX_CALL_SECONDS`) so a pilot 
 - `SCENARIOS.md`
 - `BUG_REPORT.md` and `submission/BUG_REPORT.md`
 - `CALL_QA.md` and `CALL_EVALUATION.md`
+- `ITERATION_LOG.md`
 - `SUBMISSION.md`
 - Loom walkthrough link in this README before submission
 - 5-minute screen recording showing AI-assisted debugging/fixing

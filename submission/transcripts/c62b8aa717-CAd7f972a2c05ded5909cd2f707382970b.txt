@@ -1,0 +1,17 @@
+Call transcript: c62b8aa717-CAd7f972a2c05ded5909cd2f707382970b
+Speakers: PatientBot is this caller; AthenaAgent is the assessment target.
+
+[00:06] AthenaAgent: This call may be recorded for quality and training purposes.
+[00:12] AthenaAgent: Thanks for calling Pivot Point Orthopedics, part of Pretty Good AI. Am I speaking with Maya?
+[00:14] PatientBot: Hi, I’m running low on my blood pressure medicine and need a refill. I’m not Maya, I’m Sam Rivera.
+[00:29] AthenaAgent: Please provide the full name and date of birth of the patient who needs the refill.
+[00:31] PatientBot: Sam Rivera, date of birth May 30, 1968. Before we keep going, can you help me with the refill request? It’s for the little white blood pressure pill.
+[00:56] AthenaAgent: Would you like me to look up your record using your phone number? If so, please tell me the number you have on file with us. If you're not sure, I can confirm your name and date of birth again.
+[00:57] AthenaAgent: Just let me know.
+[01:01] PatientBot: Okay, let’s sort that out so we can move your refill along.
+[01:01] PatientBot: I’m not sure which phone number you have on file. I’ve already given my name and date of birth, so can we go ahead with the refill request? I’m running low on the little white blood pressure pill and need it refilled.
+[01:32] AthenaAgent: I can't proceed further right now, but I can make sure our clinic support team follows up with you. I'll let them know you need a refill for your blood pressure medication. Please hold while I document your request.
+[01:34] AthenaAgent: Connecting you to a representative.
+[01:35] PatientBot: Before you transfer me, what do you need to process the refill? I can
+[01:39] AthenaAgent: Hello, you've reached the Pretty Good AI test line. Goodbye.
+[01:40] PatientBot: Thanks, goodbye.

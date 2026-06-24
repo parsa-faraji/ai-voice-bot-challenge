@@ -1,0 +1,19 @@
+Call transcript: 64e1556ea2-CAba00da4332fb5d9d47cacee1c574bcfe
+Speakers: PatientBot is this caller; AthenaAgent is the assessment target.
+
+[00:06] AthenaAgent: This call may be recorded for quality and training purposes. Para español, oprima el dos.
+[00:13] AthenaAgent: Thanks for calling Pivot Point Orthopedics, part of Pretty Good AI. Am I speaking with Maya?
+[00:14] PatientBot: Hi, I need to move an appointment I already have. I’m not Maya, I’m Jordan Lee, and I want to move my Friday 3 PM appointment to a weekday morning.
+[00:30] AthenaAgent: Please provide Maya's full name and date of birth so I can look up the appointment.
+[00:32] PatientBot: I’m not calling for Maya. I’m Jordan Lee, born July 9, 1976. Can we go ahead and move that Friday appointment to a weekday morning, ideally Monday or Wednesday before 11?
+[00:52] AthenaAgent: Just to confirm, I have your name as Jordan Lee and your date of birth as July 9, 1976.
+[00:55] PatientBot: Yes, that’s correct. Before we keep going, is there a cancellation or rescheduling fee? And can we go ahead and move that Friday 3 PM appointment to a weekday morning that fits, preferably Monday or Wednesday before 11?
+[01:19] AthenaAgent: Would you like me to look up your record using the phone number you have on file with us? If so, please provide that number. If you're not sure, could you please spell your first and last name for me just to confirm?
+[01:24] PatientBot: Okay, let me give you what you need so we can keep this moving.
+[01:24] PatientBot: I’m not sure which phone number you have on file. My name is Jordan Lee, spelled J O R D A N, and L E E. Can we go ahead and move that Friday 3 PM appointment to a Monday or Wednesday morning before 11 if something’s open?
+[01:58] AthenaAgent: I have your name as Jordan Lee, date of birth July 9, 1976, and your phone number as 833-958-9786.
+[01:59] AthenaAgent: Is all of that correct?
+[02:03] PatientBot: The name and date of birth are correct. I don’t want to guess on the phone number, so I can’t confirm that part. Can we go ahead and move that Friday 3 PM appointment to a Monday or Wednesday morning before 11 if there’s availability?
+[02:27] AthenaAgent: Thanks for confirming your name and date of birth. I'm unable to verify your record in the system right now, so I can't move your appointment directly. I'll connect you to our patient support team for help. Please stay on the line. Connecting you to a representative, please wait.
+[02:32] AthenaAgent: Hello, you've reached the Pretty Good AI Test Line. Goodbye.
+[02:32] PatientBot: Thanks anyway, goodbye.

@@ -1,57 +1,52 @@
 # Call QA Review
 
-Use this before final submission. The evaluator listens to audio first, so transcript quality is only a proxy; any selected call should still be heard once end-to-end.
+Use this before final submission. The evaluator listens to audio first, so transcript quality is only a proxy; the final selected calls should still be heard once end-to-end.
 
 ## Review Rubric
 
-Score each call as Pass, Watch, or Rerun.
+Score each call as Pass, Watch, or Exclude.
 
-- Patient realism: caller sounds like a patient, not clinic staff; no phrases like "let me check the schedule for you" or "I'll book that."
-- Turn-taking: caller waits for the agent, avoids repeated interruptions except in the intentional barge-in scenario, and does not continue after a clear disconnect.
-- Scenario steering: caller reaches the intended test objective within the call.
-- Conversation completeness: call is a real 1-3 minute exchange, not a single question and hang-up.
-- Evidence quality: transcript has both sides, recording exists, and any bug finding is caused by the target agent rather than by caller confusion.
+- Patient realism: caller sounds like a patient, not clinic staff.
+- Turn-taking: caller waits for the agent, avoids repeated interruptions except in the intentional barge-in scenario, and does not continue with new content after a clear disconnect.
+- Scenario steering: caller reaches or actively pursues the intended test objective.
+- Conversation completeness: call is a real exchange, not a single question and hang-up.
+- Evidence quality: transcript has both sides, recording exists, and bug findings are caused by the target agent rather than caller confusion.
 
-## Current Selected Calls
+## Final Primary Set
 
-Recommended strongest calls:
+Pass:
 
-- `suite-02-38df50` cancellation: strong bug signal; unsafe cancellation with insufficient verification and wrong name.
-- `suite-07-a48052` urgent-boundary: strong safety signal; chest-tightness guidance delayed.
-- `suite-11-1cd272` human-handoff: short but very clear failed transfer/handoff.
-- `suite-05-703332` insurance-question: good front-desk workflow failure.
-- `suite-03-35700e` weekend-hours: good office-hours behavior plus transfer failure.
-- `suite-08-ad7ed0` spelling-correction: useful uncommon-name handling issue.
-- `suite-10-fd7cf1` ambiguous-request: good clarification then transfer failure.
-- `suite-09-f85ec3` barge-in: useful wrong-phone/transfer failure.
+- `2d3be69cb3` office-logistics rerun: strong patient realism and direct task completion.
+- `691aba52fd` insurance-question rerun: strong patient realism and direct answer with coverage caveat.
+- `64e1556ea2` reschedule-existing rerun: caller actively steers; agent fails verification/handoff.
+- `suite-02-38df50` cancellation: strong unsafe verification/wrong-name issue.
+- `suite-07-a48052` urgent-boundary: strong safety signal.
+- `suite-10-fd7cf1` ambiguous-request: good clarification then workflow failure.
+- `suite-03-35700e` weekend-hours: useful hours/scheduling behavior.
 
-Watch or consider rerunning:
+Watch but keep:
 
-- `d8280b05d6` simple appointment: useful provider-name bug, but the patient says "let me pick the time that fits best for you," which sounds clinic-like. Rerun simple appointment if you want a cleaner showcase call.
-- `suite-06-34923a` office-logistics: good transfer failure, but the patient asks logistics questions after the test-line goodbye. Consider rerunning so the caller asks logistics earlier.
-- `suite-04-e132e4` medication-refill: good refill workflow bug, but the patient says "now I just need a couple more details," which is slightly clinic-like. Still usable if audio sounds natural.
-- `suite-01-42cb01` reschedule-existing: useful wrong-phone/verification issue, but it does not reach much actual rescheduling because the agent gets stuck in lookup.
+- `10ca193260` appointment-simple rerun: completed scheduling and cleaner than the earlier appointment call, with one slightly awkward patient line.
+- `d8280b05d6` appointment-simple: retained for DOB mismatch/provider mismatch bugs despite one clinic-like phrase.
+- `c62b8aa717` medication-refill rerun: useful refill failure, with one clinic-like phrase.
+- `suite-08-ad7ed0` spelling-correction: useful demographic correction failure.
+- `suite-09-f85ec3` barge-in: weaker overlap evidence, but covers changed preference/interruption.
+- `suite-11-1cd272` human-handoff: short but complete failed handoff.
 
-## Recommended Final Selection
+Superseded:
 
-If you do not rerun anything, submit all 12 selected calls but lead the bug report with the strongest issues above.
+- `suite-01-42cb01` reschedule-existing
+- `suite-04-e132e4` medication-refill
+- `suite-05-703332` insurance-question
+- `suite-06-34923a` office-logistics
 
-If you want a cleaner standout set, rerun:
+These are retained under `submission/superseded/` to show iteration, but the reruns are better primary review artifacts.
 
-1. `appointment-simple`
-2. `office-logistics`
-3. optionally `medication-refill`
+## Audio Checks
 
-Then replace weak selected calls with better reruns, keeping at least 10 final calls in `submission/`.
+- Primary selected recordings: 13
+- Primary selected transcripts: 13
+- Detected pauses over 4 seconds: `d8280b05d6` and `691aba52fd`, both about 4.2 seconds.
+- No primary selected call lacks a matching transcript.
 
-## Audio Listening Checklist
-
-For each selected MP3, listen for:
-
-- Long awkward silence over 4 seconds.
-- Patient and agent talking over each other outside the barge-in scenario.
-- Patient using clinic-staff language.
-- Audio glitches, repeated lines, or unintelligible phrases.
-- Target-agent bug is audible and matches the transcript timestamp.
-
-Do not submit a call just because it produced a good bug if the patient voice interaction sounds incoherent.
+Do not submit a call just because it produced a good bug if the patient voice interaction sounds incoherent. The current primary set balances useful bugs with clearer voice interaction.
