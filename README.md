@@ -58,7 +58,13 @@ To continue after a pilot call and avoid duplicating the first scenario:
 uv run voicebot run-suite --start-index 2 --count 13 --spacing-seconds 10 --yes
 ```
 
-After calls complete:
+To inspect the committed submission transcripts:
+
+```bash
+uv run voicebot evaluate-transcripts submission/transcripts
+```
+
+After running new calls locally:
 
 ```bash
 uv run voicebot fetch-artifacts
@@ -66,13 +72,19 @@ uv run voicebot evaluate-transcripts artifacts/transcripts
 uv run voicebot analyze
 ```
 
-Artifacts are written under `artifacts/`:
+The committed submission evidence lives in:
+
+- `submission/recordings/*.mp3`: selected Twilio call recordings
+- `submission/transcripts/*.txt`: selected speaker-labeled transcripts
+- `submission/BUG_REPORT.md`: curated findings for review
+
+When running new calls locally, generated runtime output is written under the gitignored `artifacts/` directory:
 
 - `recordings/*.mp3`: Twilio call recordings
 - `transcripts/*.txt`: speaker-labeled transcripts reconstructed from Realtime transcript events
 - `BUG_REPORT.md`: generated draft bug report for local review
 
-Use `evaluate-transcripts` before promoting calls into `submission/`. It screens for patient-bot issues such as missed identity answers, unnatural filler, staff-like phrasing, delayed DOB/spelling answers, overlong turns, and substantive comments after the agent has ended the call.
+Use `evaluate-transcripts` before promoting new local calls into `submission/`. It screens for patient-bot issues such as missed identity answers, unnatural filler, staff-like phrasing, delayed DOB/spelling answers, overlong turns, and substantive comments after the agent has ended the call.
 
 Calls default to a 180-second Twilio time limit (`MAX_CALL_SECONDS`) so a pilot or suite call cannot run open-ended. `run-suite` waits for each call to complete before starting the next one; overlapping calls usually sound worse and make artifacts harder to review.
 
