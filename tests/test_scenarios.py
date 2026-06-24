@@ -15,5 +15,11 @@ def test_scenarios_have_voice_profiles():
     assert profiles == {"female", "male"}
 
 
+def test_scenarios_have_first_turn_examples():
+    for scenario in all_scenarios():
+        assert scenario.patient_name in scenario.first_turn_example
+        assert len(scenario.first_turn_example) < 140
+
+
 def test_get_scenario():
     assert get_scenario("weekend-hours").title == "Weekend and closed-hours edge case"

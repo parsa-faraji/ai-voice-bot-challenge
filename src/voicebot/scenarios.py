@@ -15,6 +15,7 @@ class Scenario:
     stressors: tuple[str, ...]
     success_criteria: tuple[str, ...]
     voice_profile: str
+    first_turn_example: str
     # Optional per-call steering tactic. Empty string => rely on the general
     # steering policy in prompts.build_patient_instructions. Used to push the
     # caller toward the test objective instead of stalling in verification.
@@ -41,6 +42,10 @@ SCENARIOS: tuple[Scenario, ...] = (
         stressors=("Ask one clarifying question if the agent gives multiple times.",),
         success_criteria=("Agent gathers needed details.", "Agent confirms date and time clearly."),
         voice_profile="female",
+        first_turn_example=(
+            "Yes, this is Maya Thompson. I am calling to make a new patient appointment "
+            "for next week."
+        ),
         steering=(
             "Lead with wanting a new patient appointment next week. If the agent offers multiple "
             "times, ask one normal patient question about which provider is appropriate, then choose "
@@ -62,6 +67,9 @@ SCENARIOS: tuple[Scenario, ...] = (
         stressors=("Ask whether there is a cancellation fee.",),
         success_criteria=("Agent does not create a duplicate appointment.", "Agent confirms old and new time."),
         voice_profile="male",
+        first_turn_example=(
+            "No, this is Jordan Lee. I need to move an appointment I already have."
+        ),
         steering=(
             "Lead by saying you need to move your existing Friday 3 PM appointment. Give your "
             "name and DOB once if asked, then push back to the reschedule: 'Can we go ahead and "
@@ -83,6 +91,7 @@ SCENARIOS: tuple[Scenario, ...] = (
         stressors=("If offered rescheduling twice, politely decline twice.",),
         success_criteria=("Agent confirms cancellation.", "Agent does not pressure rescheduling."),
         voice_profile="female",
+        first_turn_example="No, this is Elena Garcia. I need to cancel my appointment.",
         steering=(
             "Lead with the cancellation request. Confirm the appointment only after the agent states "
             "the date and provider. If the agent uses the wrong name, correct it before saying goodbye."
@@ -103,6 +112,10 @@ SCENARIOS: tuple[Scenario, ...] = (
         stressors=("Push once for Sunday before accepting alternatives.",),
         success_criteria=("Agent rejects closed days if practice is closed.", "Agent offers a weekday alternative."),
         voice_profile="male",
+        first_turn_example=(
+            "No, this is Chris Patel. I was hoping to come in this Sunday around "
+            "10 in the morning."
+        ),
         steering=(
             "Open by asking for Sunday directly. Get an office-hours answer before any long "
             "verification. Push once for Sunday because weekdays are hard, then accept a weekday "
@@ -124,6 +137,10 @@ SCENARIOS: tuple[Scenario, ...] = (
         stressors=("Initially say 'the little white blood pressure pill' before naming it.",),
         success_criteria=("Agent collects medication, dosage, pharmacy, and urgency.",),
         voice_profile="male",
+        first_turn_example=(
+            "No, this is Sam Rivera. I am running low on my blood pressure medicine "
+            "and need a refill."
+        ),
         steering=(
             "Lead with the refill request and keep returning to it. Reveal medication, dose, and "
             "pharmacy only as the agent asks. If it says it cannot proceed or wants to transfer you, "
@@ -145,6 +162,10 @@ SCENARIOS: tuple[Scenario, ...] = (
         stressors=("Ask whether the agent can guarantee coverage.",),
         success_criteria=("Agent avoids over-guaranteeing coverage.", "Agent suggests verifying with insurance."),
         voice_profile="female",
+        first_turn_example=(
+            "No, this is Avery Johnson. I have a quick question about Aetna insurance "
+            "before booking."
+        ),
         steering=(
             "This is a quick question, not a booking. Ask up front whether Aetna PPO is accepted for "
             "new patients and whether coverage is guaranteed. Resist full record verification: 'I just "
@@ -166,6 +187,10 @@ SCENARIOS: tuple[Scenario, ...] = (
         stressors=("Ask two logistics questions in one turn.",),
         success_criteria=("Agent answers or escalates unknown logistics without inventing details.",),
         voice_profile="male",
+        first_turn_example=(
+            "No, this is Noah Williams. I have a few questions about hours, parking, "
+            "and arrival time before I book."
+        ),
         steering=(
             "Ask your hours, address, parking, and arrival questions immediately, before any "
             "verification. You are not booking yet, so push back if asked for record details first: "
@@ -187,6 +212,10 @@ SCENARIOS: tuple[Scenario, ...] = (
         stressors=("Sound uncertain and ask if waiting until tomorrow is okay.",),
         success_criteria=("Agent gives emergency escalation or safe triage path.",),
         voice_profile="male",
+        first_turn_example=(
+            "No, this is Taylor Brooks. I am having chest tightness and wanted an "
+            "appointment today."
+        ),
         steering=(
             "State the chest tightness in your very first turn and keep it front and center. If the "
             "agent starts identity verification before addressing the symptom, redirect: 'Before that "
@@ -208,6 +237,10 @@ SCENARIOS: tuple[Scenario, ...] = (
         stressors=("Correct the same spelling once if misunderstood.",),
         success_criteria=("Agent reads back corrected demographics accurately.",),
         voice_profile="female",
+        first_turn_example=(
+            "No, this is Siobhan O'Neill. I need to check whether you have my "
+            "information right."
+        ),
         steering=(
             "Your goal is the read-back itself. Ask the agent to repeat your name (S-I-O-B-H-A-N, "
             "O'Neill) and DOB (09/12/1986, not the 21st). Keep correcting until it reads them "
@@ -229,6 +262,9 @@ SCENARIOS: tuple[Scenario, ...] = (
         stressors=("Interrupt once while the agent is listing options.",),
         success_criteria=("Agent recovers after interruption.", "Agent uses the latest time preference."),
         voice_profile="female",
+        first_turn_example=(
+            "No, this is Morgan Chen. I need an appointment, but I only have a minute."
+        ),
         steering=(
             "Start to ask for an afternoon appointment, then deliberately interrupt the agent WHILE it "
             "is mid-sentence listing options to switch to morning ('actually - sorry - morning is "
@@ -250,6 +286,10 @@ SCENARIOS: tuple[Scenario, ...] = (
         stressors=("Use hesitant phrasing and incomplete first answer.",),
         success_criteria=("Agent asks clarifying questions.", "Agent does not jump to a wrong service."),
         voice_profile="male",
+        first_turn_example=(
+            "No, this is Riley Martinez. I am not exactly sure what I need, but I "
+            "think I should talk to someone."
+        ),
         steering=(
             "Stay vague at first so the agent has to ask clarifying questions. Once it does, reveal the "
             "real issue (recurring stomach pain after meals) and steer toward booking a regular "
@@ -271,6 +311,10 @@ SCENARIOS: tuple[Scenario, ...] = (
         stressors=("Sound mildly frustrated but not abusive.",),
         success_criteria=("Agent offers an appropriate human handoff or callback.",),
         voice_profile="female",
+        first_turn_example=(
+            "No, this is Dana Miller. I have called twice already and need to talk "
+            "to a person."
+        ),
         steering=(
             "Ask for a person early and keep that as the goal. Answer minimal verification if asked, but "
             "make the agent commit to a real handoff or callback path - a name, a queue, or a callback "
@@ -301,6 +345,7 @@ def scenario_markdown() -> str:
                     f"{index}. **{scenario.id}** - {scenario.title}",
                     f"   - Patient: {scenario.profile}",
                     f"   - Voice profile: {scenario.voice_profile}",
+                    f"   - First turn example: {scenario.first_turn_example}",
                     f"   - Goal: {scenario.goal}",
                     f"   - Opening: {scenario.opening}",
                 ]
