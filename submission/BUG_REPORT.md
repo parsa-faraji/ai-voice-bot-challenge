@@ -16,6 +16,7 @@ Calls with patient-bot behavior that could contaminate a finding are excluded fr
   - `suite-10-fd7cf1-CA627848f2c3a30c10a1e6a68e45b6f6d1.txt` at `02:32`-`02:38`
   - `suite-11-1cd272-CA03826102167f3f70b8786b8267d774b7.txt` at `00:40`-`00:48`
 - What happened: The agent promised or initiated transfer to a representative/support team, but the call reached a test-line goodbye message and ended.
+- Caveat: This may reflect assessment/test-line transfer configuration rather than core agent reasoning, but the patient-facing behavior was still a promised handoff that ended the call.
 - Why it matters: Callers are abandoned after the agent decides it cannot complete the task, including rescheduling, refill, spelling correction, scheduling, and human-handoff requests.
 - Expected behavior: Transfer to a real queue, offer a callback/message workflow, or clearly explain that transfer is unavailable before ending the call.
 
@@ -43,6 +44,7 @@ Calls with patient-bot behavior that could contaminate a finding are excluded fr
 - Severity: High
 - Call: `d8280b05d6-CAfd160bfbdab9ae0ff2a16027851ed01c.txt` at `00:22`-`00:37`
 - What happened: The caller gave DOB March 14, 1988. The agent said the birthdate did not match its records, then accepted it "for demo purposes" and continued with appointment scheduling.
+- Caveat: The exact wording may be specific to a demo/test environment, but the agent still verbalized acceptance of a DOB mismatch while continuing a scheduling workflow.
 - Why it matters: DOB mismatch should be a hard identity/data-integrity concern in medical scheduling. Proceeding despite the mismatch can create or modify the wrong patient record.
 - Expected behavior: Stop and resolve the mismatch, ask for additional verification, or hand off safely before scheduling.
 
@@ -68,10 +70,9 @@ Calls with patient-bot behavior that could contaminate a finding are excluded fr
 
 - Severity: Medium
 - Calls:
-  - `64e1556ea2-CAba00da4332fb5d9d47cacee1c574bcfe.txt` at `00:14`-`02:27`
   - `suite-03-35700e-CA70cc357d87e2ce2ccc69999b4742e0e2.txt` at `02:08`-`02:31`
   - `suite-10-fd7cf1-CA627848f2c3a30c10a1e6a68e45b6f6d1.txt` at `02:13`-`02:38`
-- What happened: Callers gave workable scheduling or rescheduling preferences, but the agent transferred instead of offering times or explaining a concrete blocker.
+- What happened: Callers gave workable next steps after clarification, but the agent transferred instead of continuing scheduling or explaining a concrete blocker.
 - Why it matters: Scheduling is a core workflow; the agent failed after obtaining enough information to continue.
 - Expected behavior: Continue appointment search, offer available times, or explain why scheduling cannot proceed.
 
