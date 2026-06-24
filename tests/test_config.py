@@ -7,6 +7,7 @@ from voicebot.config import (
     ConfigError,
     TargetNumberError,
     assert_assessment_target,
+    load_settings,
     normalize_e164,
     public_http_to_ws,
 )
@@ -43,3 +44,16 @@ def test_public_http_to_ws_preserves_path():
     assert public_http_to_ws("https://abc.ngrok.app/base", "/media") == (
         "wss://abc.ngrok.app/base/media"
     )
+
+
+def test_load_settings_reads_initial_audio_ignore_ms(monkeypatch):
+    monkeypatch.setenv("OPENAI_API_KEY", "sk-test")
+    monkeypatch.setenv("TWILIO_ACCOUNT_SID", "AC123")
+    monkeypatch.setenv("TWILIO_AUTH_TOKEN", "token")
+    monkeypatch.setenv("TWILIO_FROM_NUMBER", "+13334445555")
+    monkeypatch.setenv("PUBLIC_BASE_URL", "https://abc.ngrok.app")
+    monkeypatch.setenv("INITIAL_AUDIO_IGNORE_MS", "9000")
+
+    loaded = load_settings(env_file=None)
+
+    assert loaded.initial_audio_ignore_ms == 9000

@@ -21,5 +21,11 @@ def test_scenarios_have_first_turn_examples():
         assert len(scenario.first_turn_example) < 140
 
 
+def test_only_one_scenario_intentionally_forgets_phone_number():
+    unknown_phone = [scenario for scenario in all_scenarios() if scenario.phone_policy == "unknown"]
+
+    assert [scenario.id for scenario in unknown_phone] == ["forgot-phone-verification"]
+
+
 def test_get_scenario():
     assert get_scenario("weekend-hours").title == "Weekend and closed-hours edge case"

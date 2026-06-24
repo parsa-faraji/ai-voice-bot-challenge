@@ -68,6 +68,8 @@ class MediaBridge:
                     self._record(state, "twilio_in", event)
                 elif event_name == "media":
                     self._record(state, "twilio_in", event)
+                    if not self._should_forward_remote_audio(state):
+                        continue
                     state.remote_media_seen = True
                     payload = event.get("media", {}).get("payload")
                     if payload:
@@ -94,10 +96,16 @@ class MediaBridge:
         asyncio.create_task(self._delayed_initial_response(openai_ws, state))
 
     async def _delayed_initial_response(self, openai_ws: Any, state: BridgeState) -> None:
-        await asyncio.sleep(self.settings.initial_greeting_delay_ms / 1000)
+        await asyncio.sleep(self._initial_response_delay_ms() / 1000)
         if state.scenario and state.session_configured and not state.remote_media_seen:
             await openai_ws.send(json.dumps(response_create_event(state.scenario)))
             state.response_active = True
+
+    def _should_forward_remote_audio(self, state: BridgeState) -> bool:
+        return state.elapsed() * 1000 >= self.settings.initial_audio_ignore_ms
+
+    def _initial_response_delay_ms(self) -> int:
+        return self.settings.initial_audio_ignore_ms + self.settings.initial_greeting_delay_ms
 
     async def _openai_to_twilio(self, twilio_ws: WebSocket, openai_ws: Any, state: BridgeState):
         async for raw in openai_ws:

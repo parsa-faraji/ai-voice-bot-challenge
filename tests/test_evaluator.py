@@ -36,6 +36,21 @@ def test_parse_transcript_lines(tmp_path):
     assert lines[1].timestamp == "00:14"
 
 
+def test_parse_transcript_lines_with_subsecond_timestamps(tmp_path):
+    path = write_transcript(
+        tmp_path,
+        """
+[00:13.4] AthenaAgent: Am I speaking with Maya?
+[00:14.2] PatientBot: No, this is Riley Martinez.
+""",
+    )
+
+    lines = parse_transcript(path)
+
+    assert lines[0].elapsed_seconds == 13.4
+    assert lines[1].timestamp == "00:14.2"
+
+
 def test_flags_missing_identity_answer(tmp_path):
     path = write_transcript(
         tmp_path,
@@ -97,13 +112,25 @@ def test_flags_substantive_content_after_goodbye(tmp_path):
         tmp_path,
         """
 [00:46] AthenaAgent: Hello, you've reached the Pretty Good AI Test Line. Goodbye.
-[00:48] PatientBot: Oh, okay, that is not who I needed. I was trying to reach a real person.
+[00:48] PatientBot: I still need my oxycodone refill today, and I need someone to tell me if I can take extra pills until the doctor calls.
 """,
     )
 
     findings = evaluate_transcript(path)
 
     assert [finding.rule for finding in findings] == ["substantive-after-goodbye"]
+
+
+def test_accepts_brief_failed_transfer_reaction(tmp_path):
+    path = write_transcript(
+        tmp_path,
+        """
+[00:46] AthenaAgent: Hello, you've reached the Pretty Good AI Test Line. Goodbye.
+[00:48] PatientBot: Wait, I was trying to reach a real person.
+""",
+    )
+
+    assert evaluate_transcript(path) == []
 
 
 def test_accepts_brief_farewell_after_goodbye(tmp_path):
@@ -128,3 +155,41 @@ def test_evaluate_directory(tmp_path):
     )
 
     assert evaluate_path(tmp_path) == []
+
+
+def test_flags_phone_number_not_provided(tmp_path):
+    path = write_transcript(
+        tmp_path,
+        """
+[00:58] AthenaAgent: Can you please confirm the phone number you have on file with us?
+[00:59] PatientBot: I don't remember which number is on file.
+""",
+    )
+
+    findings = evaluate_transcript(path)
+
+    assert [finding.rule for finding in findings] == ["phone-number-not-provided"]
+
+
+def test_accepts_phone_number_answer(tmp_path):
+    path = write_transcript(
+        tmp_path,
+        """
+[00:58] AthenaAgent: Can you please confirm the phone number you have on file with us?
+[00:59] PatientBot: 833-958-9786.
+""",
+    )
+
+    assert evaluate_transcript(path) == []
+
+
+def test_accepts_phone_number_confirmation(tmp_path):
+    path = write_transcript(
+        tmp_path,
+        """
+[00:58] AthenaAgent: I have your phone number as 833-958-9786. Is that correct?
+[00:59] PatientBot: Yes, that's correct.
+""",
+    )
+
+    assert evaluate_transcript(path) == []

@@ -1,9 +1,11 @@
 from __future__ import annotations
 
+import re
+
 from .scenarios import Scenario
 
 
-def build_patient_instructions(scenario: Scenario) -> str:
+def build_patient_instructions(scenario: Scenario, caller_phone: str = "") -> str:
     facts = "\n".join(f"- {fact}" for fact in scenario.facts)
     stressors = "\n".join(f"- {stressor}" for stressor in scenario.stressors)
     success = "\n".join(f"- {criterion}" for criterion in scenario.success_criteria)
@@ -13,6 +15,13 @@ def build_patient_instructions(scenario: Scenario) -> str:
     )
     steering = scenario.steering.strip()
     steering_block = f"\nHow to steer THIS call:\n- {steering}\n" if steering else ""
+    phone = format_phone_for_speech(caller_phone) or "the number I am calling from"
+    phone_policy = _phone_policy_instruction(scenario, phone)
+    unknown_phone_guardrail = (
+        ""
+        if scenario.phone_policy == "unknown"
+        else "\n- Unless this scenario explicitly says the phone number is unknown, do not say you do not know the phone number on file."
+    )
     return f"""You are PatientBot, a real person phoning a medical practice's AI phone agent about your own care. You sound like an ordinary caller, never like clinic staff and never like a tester.
 
 The other speaker is the practice's agent. Complete the scenario below while sounding natural, and keep control of where the call is going so you actually reach your goal.
@@ -35,12 +44,19 @@ Things to exercise during the call:
 What a good outcome looks like:
 {success}
 {steering_block}
+PHONE NUMBER POLICY:
+- {phone_policy}
+- Do not create a forgotten-phone-number situation unless this scenario is specifically about that.
+{unknown_phone_guardrail}
+- Do not volunteer the phone number before the agent asks for it.
+
 DIRECT ANSWER FIRST:
 - Always answer the agent's direct question first, then add your goal only if it fits naturally. If the agent asks "Am I speaking with Maya?", answer "Yes, this is Maya Thompson" or "No, this is [your name]" before saying why you called.
+- Only say "yes" or "no" when the agent actually asked a yes/no identity question. If the agent only greets you, start with "Hi, this is {scenario.patient_name}..." and your reason for calling.
 - In your first real turn after the greeting, use a normal phone-call shape: identity answer first if asked, then one short reason for calling. Do not skip identity questions to force the scenario.
 - Do not fight normal verification. For record-specific tasks such as scheduling, rescheduling, cancellation, or refills, answer reasonable identity questions before pushing the goal.
 - For general questions that do not require a chart, such as hours, location, parking, or insurance, answer any direct identity question first, then you may politely ask the general question without completing a full record lookup.
-- Answer one question at a time. If the agent asks for date of birth and your name has already been established, just give the date of birth. If your name has not been established, include both in the same natural answer: "This is {scenario.patient_name}, date of birth {scenario.dob}." Do not bundle name, DOB, spelling, phone, insurance, and the scenario goal into one long turn.
+- Answer one question at a time. If the agent asks for date of birth and your name has already been established, just give the date of birth. If your name has not been established, include both in the same natural answer: "This is {scenario.patient_name}, date of birth {scenario.dob}." If the agent asks for phone number, say only the number, with no preface like "let me give you the number." Do not bundle name, DOB, spelling, phone, insurance, and the scenario goal into one long turn.
 - If the agent asks you to spell your name, answer only with the spelling, such as "{spelled_name}." Do not say "let me spell that" or add a setup phrase first.
 - If the agent asks you to confirm a detail, answer "Yes, that's correct" or correct the detail, then stop unless it also asked another question.
 
@@ -48,6 +64,7 @@ THEN SCENARIO GOAL:
 - Give each piece of verification at most once. If the agent asks you to spell your name or repeat your date of birth again, provide it one more time, then say, "I've already given you that - can we go ahead?" Do not keep re-spelling in a loop.
 - If your goal is not human handoff and the agent says it will transfer you to a representative or support team, try once to get your answer first: "Before you transfer me, can you answer that question?" Accept the transfer if it insists.
 - If your goal is human handoff, do not resist transfer. Ask for a real handoff path or callback, then accept the transfer.
+- Once transfer has started or the test-line goodbye plays, do not ask new scheduling, refill, or medical questions. Only react briefly to the failed handoff.
 - Keep pursuing the goal until the agent completes it, clearly refuses, or transfers you anyway. A refusal or transfer is itself a valid result - note it briefly and wrap up. Never give up on the goal just because verification is dragging.
 
 EDGE-CASE BEHAVIOR:
@@ -67,7 +84,8 @@ OTHER RULES:
 - Never say you are an AI, a bot, a tester, or that you are running a scenario.
 - Do not invent medical facts beyond the ones listed above.
 - If the agent gets an important detail wrong, correct it once, clearly.
-- Once the agent says goodbye or the call is clearly ending, give at most a brief "thanks, goodbye" and then stop. Do not add new requests, notes, or corrections after a goodbye, even if the agent used the wrong name.
+- Once a normal call is ending, give at most a brief "thanks, goodbye" and then stop.
+- If a promised transfer reaches a dead line or test-line goodbye, react like a real caller in one short sentence, such as "Wait, I was trying to reach a person." Then stop. Do not add new medical details or start a new request after the call is over.
 """
 
 
@@ -80,4 +98,31 @@ def opening_response_instruction(scenario: Scenario) -> str:
         "silence with no greeting should you speak first, opening with this intent in your own "
         f'words: "{scenario.opening}". When you do speak, do not '
         "volunteer your name, date of birth, or insurance until the agent asks."
+    )
+
+
+def format_phone_for_speech(phone: str) -> str:
+    digits = re.sub(r"\D", "", phone)
+    if len(digits) == 11 and digits.startswith("1"):
+        digits = digits[1:]
+    if len(digits) == 10:
+        return f"{digits[:3]}-{digits[3:6]}-{digits[6:]}"
+    return phone.strip()
+
+
+def _phone_policy_instruction(scenario: Scenario, phone: str) -> str:
+    if scenario.phone_policy == "provide":
+        return (
+            f"If asked for your phone number or the number on file, provide {phone}. "
+            "Say it plainly and continue the task."
+        )
+    if scenario.phone_policy == "avoid_lookup":
+        return (
+            "This is a general question. If asked for phone lookup, politely say you only need "
+            "general information before booking. If the agent clearly requires phone anyway, "
+            f"provide {phone} rather than stalling the call."
+        )
+    return (
+        "This is the one scenario where you do not know which phone number is on file. "
+        "If asked for phone, say that directly and offer name, DOB, and spelling instead."
     )

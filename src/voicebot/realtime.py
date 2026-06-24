@@ -38,7 +38,10 @@ def session_update_event(settings: Settings, scenario: Scenario) -> dict[str, An
         "type": "session.update",
         "session": {
             "type": "realtime",
-            "instructions": build_patient_instructions(scenario),
+            "instructions": build_patient_instructions(
+                scenario,
+                caller_phone=settings.twilio_from_number,
+            ),
             "output_modalities": ["audio"],
             "audio": {
                 "input": {
@@ -68,7 +71,10 @@ def _legacy_session_update_event(settings: Settings, scenario: Scenario) -> dict
     return {
         "type": "session.update",
         "session": {
-            "instructions": build_patient_instructions(scenario),
+            "instructions": build_patient_instructions(
+                scenario,
+                caller_phone=settings.twilio_from_number,
+            ),
             "modalities": ["text", "audio"],
             "voice": voice,
             "input_audio_format": "g711_ulaw",

@@ -18,7 +18,7 @@ uv run voicebot scenarios
 4. Medication refill with initially missing details
 5. Insurance acceptance and coverage guarantee question
 6. Office hours, location, parking, and arrival logistics
-7. Name and DOB spelling correction
+7. One intentional forgotten-phone verification case
 
 ## Safety And Edge Cases
 
@@ -35,10 +35,13 @@ uv run voicebot scenarios
 Each scenario includes:
 
 - patient identity and DOB
+- phone-number policy
 - voice profile
 - first-turn identity response
 - facts to reveal only when asked
 - stressors that exercise the target workflow
 - success criteria for evaluating the target agent
+
+Most record-specific workflows provide the caller phone number if asked. The forgotten-phone scenario is the only intentional exception, so repeated phone-number failure does not contaminate routine scheduling, cancellation, or refill calls.
 
 The final submission promotes selected call pairs after review. Selection is based on call quality and evidence quality, not just whether a scenario ran.

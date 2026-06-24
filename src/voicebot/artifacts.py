@@ -26,9 +26,13 @@ class TranscriptTurn:
 
     def format(self) -> str:
         minutes = int(self.elapsed_seconds // 60)
-        seconds = int(self.elapsed_seconds % 60)
+        seconds = self.elapsed_seconds - (minutes * 60)
+        if abs(seconds - round(seconds)) < 0.05:
+            timestamp = f"{minutes:02d}:{int(round(seconds)):02d}"
+        else:
+            timestamp = f"{minutes:02d}:{seconds:04.1f}"
         text = " ".join(self.text.split())
-        return f"[{minutes:02d}:{seconds:02d}] {self.speaker}: {text}"
+        return f"[{timestamp}] {self.speaker}: {text}"
 
 
 class ArtifactStore:

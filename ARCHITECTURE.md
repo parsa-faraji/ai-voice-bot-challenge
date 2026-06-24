@@ -12,6 +12,8 @@ Twilio places the outbound call and records both sides.
 
 The FastAPI server returns TwiML with `<Connect><Stream>`, then handles the live media WebSocket at `/media`. The bridge forwards Twilio's G.711 audio chunks to OpenAI Realtime and streams generated patient audio back to Twilio.
 
+The bridge intentionally ignores the first few seconds of inbound audio before forwarding it to Realtime. The assessment line starts with an automated recording disclosure and Spanish-language option; early pilots showed that a realtime caller can accidentally treat that disclosure as the agent's first turn. `INITIAL_AUDIO_IGNORE_MS` prevents the patient from answering the disclosure while still allowing the model to hear the real greeting.
+
 ## Stack Choices
 
 - **Python + uv**: simple packaging, repeatable setup, and a single `voicebot` CLI entry point.
@@ -36,10 +38,14 @@ Each scenario defines the patient identity, voice profile, first-turn identity r
 
 That keeps the patient flexible enough to answer naturally while still steering toward scheduling, refills, triage, handoff, and edge cases.
 
+The scenario layer also defines phone-number behavior. Routine record-specific workflows provide the configured caller number when asked. The forgotten-phone scenario is the only one that intentionally cannot provide the phone number on file.
+
 ## Evidence Discipline
 
 MP3 recordings are the source of truth.
 
-Realtime transcript events are used for speaker-labeled transcripts and first-pass analysis, but a transcript is not treated as proof by itself. `evaluate-transcripts` screens for patient-bot issues before a call is promoted.
+Realtime transcript events are useful for quick debugging, but a transcript is not treated as proof by itself. Submitted transcripts are promoted only after comparing them against the MP3 recording.
+
+`evaluate-transcripts` screens for patient-bot issues before a call is promoted, including accidental phone-number failures outside the one scenario designed to test that edge.
 
 The analyzer can draft findings, but the submitted bug report only includes audio-defensible product issues.

@@ -61,3 +61,13 @@ def test_transcript_turn_format_collapses_internal_newlines():
     assert turn.format() == (
         "[00:54] PatientBot: Thanks, that helps. I have one more question."
     )
+
+
+def test_transcript_turn_format_preserves_subsecond_timestamp():
+    turn = TranscriptTurn(
+        elapsed_seconds=96.4,
+        speaker="AthenaAgent",
+        text="Please hold.",
+    )
+
+    assert turn.format() == "[01:36.4] AthenaAgent: Please hold."

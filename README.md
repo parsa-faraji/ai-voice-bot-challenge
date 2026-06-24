@@ -121,6 +121,10 @@ Local artifacts created after new calls:
 
 Use `evaluate-transcripts` before promoting new calls into `submission/`. It screens for caller-side problems such as missed identity answers, staff-like phrasing, overlong turns, repeated filler, and substantive comments after the agent has ended the call.
 
+It also flags phone-number failures. Only the forgotten-phone scenario should intentionally avoid providing the phone number.
+
+Before promoting a call, listen to the MP3 and spot-check the transcript against the recording. The transcript events are useful for review, but the audio is the source of truth.
+
 Calls default to a 180-second Twilio time limit through `MAX_CALL_SECONDS`. `run-suite` waits for each call to complete before starting the next one.
 
 ## Voice Tuning
@@ -134,6 +138,8 @@ Each scenario can use a male or female voice profile:
 - `OPENAI_REALTIME_VOICE` as fallback
 
 Use `VAD_SILENCE_DURATION_MS` to tune pacing. Higher values make the patient wait longer after the practice agent stops speaking. Lower values make the patient respond faster.
+
+Use `INITIAL_AUDIO_IGNORE_MS` to ignore the assessment line's opening disclosure before audio is sent to Realtime. This keeps the patient from answering "this call may be recorded" as if it were the first real turn.
 
 ## Repo Map
 

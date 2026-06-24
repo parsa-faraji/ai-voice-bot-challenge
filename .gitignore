@@ -17,6 +17,7 @@ artifacts/recordings/*.mp3
 artifacts/recordings/*.ogg
 artifacts/recordings/*.wav
 artifacts/transcripts/*.txt
+artifacts/audio_transcripts/*.txt
 artifacts/BUG_REPORT.md
 
 # Local review scratch files; committed submission artifacts live under submission/.

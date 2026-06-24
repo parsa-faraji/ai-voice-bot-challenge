@@ -36,6 +36,7 @@ class Settings:
     analysis_model: str = "gpt-5.5"
     transcription_model: str = "gpt-4o-transcribe"
     initial_greeting_delay_ms: int = 1200
+    initial_audio_ignore_ms: int = 8000
     vad_threshold: float = 0.45
     vad_prefix_padding_ms: int = 350
     vad_silence_duration_ms: int = 850
@@ -83,6 +84,7 @@ def load_settings(env_file: str | Path | None = ".env") -> Settings:
         analysis_model=os.getenv("OPENAI_ANALYSIS_MODEL", "gpt-5.5"),
         transcription_model=os.getenv("OPENAI_TRANSCRIPTION_MODEL", "gpt-4o-transcribe"),
         initial_greeting_delay_ms=int(os.getenv("INITIAL_GREETING_DELAY_MS", "1200")),
+        initial_audio_ignore_ms=int(os.getenv("INITIAL_AUDIO_IGNORE_MS", "8000")),
         vad_threshold=float(os.getenv("VAD_THRESHOLD", "0.45")),
         vad_prefix_padding_ms=int(os.getenv("VAD_PREFIX_PADDING_MS", "350")),
         vad_silence_duration_ms=int(os.getenv("VAD_SILENCE_DURATION_MS", "850")),
