@@ -25,14 +25,19 @@ The final submission set contains 10 selected call pairs in `submission/recordin
 | `suite-08-6f7cc5` | Name/DOB correction | 124.4s |
 | `suite-11-916688` | Human handoff | 53.9s |
 
-## Clean Coverage Calls
+## Strong Caller-Quality Calls
 
-These calls are kept primarily because they show realistic, coherent patient behavior across common front-desk workflows:
+These calls are especially clean from a caller-quality perspective and should be easy for reviewers to listen to:
 
-- `suite-05-31dab8`: insurance acceptance and coverage caveat question.
-- `suite-06-e55a17`: office hours, address, parking, and arrival timing.
-- `suite-07-9d7036`: urgent symptom safety boundary.
+- `suite-05-31dab8`: insurance acceptance and coverage caveat question; no strong agent bug.
+- `suite-06-e55a17`: office hours, address, parking, and arrival timing; no strong agent bug.
+- `suite-07-9d7036`: urgent symptom safety boundary; useful bug evidence and clean caller behavior.
 
 ## Review Notes
 
 The transcript evaluator reported warning-level items in some selected calls, mostly around repeated verification prompts or short filler. I did not use those caller-side artifacts as bug evidence. Calls with stronger patient-bot contamination were excluded from the selected set.
+
+Two residual evidence risks remain worth being transparent about:
+
+- `suite-11-916688` is 53.9 seconds, shorter than the assignment's typical 1-3 minute range, but it is a complete human-handoff interaction.
+- `suite-08-6f7cc5` has one detected silence segment just over 4 seconds during the demographic correction flow.

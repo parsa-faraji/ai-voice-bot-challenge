@@ -52,7 +52,7 @@ I intentionally did not report bugs from calls where the agent handled the scena
   - `suite-02-6dc9e2-CA14d7363e6bdc93228d55b1f597c68a8e.txt` at `01:12`-`01:53`
   - `suite-04-12debe-CA7cf387b8c7126460bf05ad683b73bb52.txt` at `01:22`-`02:06`
   - `suite-08-6f7cc5-CA202d78145882321bb7496225add88a56.txt` at `01:06`-`01:39`
-- What happened: The agent offered or accepted name/DOB/spelling confirmation as an alternative to phone-number lookup, but then still could not proceed after the caller followed that path.
+- What happened: The agent offered, accepted, or repeatedly requested name/DOB/spelling confirmation, but then still could not proceed after the caller followed that path.
 - Why it matters: Offering a verification option and then rejecting the same path creates a dead end and prevents routine front-desk tasks from completing.
 - Expected behavior: Only offer verification options that can actually be used, or state up front that staff handoff is required for that workflow.
 
