@@ -10,11 +10,13 @@ The first selected call set was coherent and produced useful bugs, but several c
 - Several scenarios got pulled into identity verification loops before reaching the intended task.
 - A few calls had substantive patient comments after the agent had already ended the call.
 - Some bug report entries leaned too much on ASR wording instead of audio-defensible behavior.
+- One cancellation call was later removed from the primary set because the caller did not provide its name before the cancellation flow, making an identity-verification finding unfair.
 
 ## Changes Made
 
 - Added stronger patient-persona rules in `src/voicebot/prompts.py` to avoid clinic-staff language.
 - Added per-scenario steering in `src/voicebot/scenarios.py` so the caller actively pursues the test objective.
+- Added stricter natural-conversation rules so the caller answers direct identity questions first and includes its name if the agent asks for DOB before identity is established.
 - Reframed bug report entries around defensible workflow failures rather than ASR-only wording.
 - Added `CALL_SELECTION.md` and `CALL_EVIDENCE.md` to make the final call-selection rationale explicit.
 
@@ -41,7 +43,7 @@ After that fix, live calls opened `/media` correctly and produced complete recor
 
 ## Final Selection
 
-The primary submission set now has 13 call pairs in `submission/recordings/` and `submission/transcripts/`. Four weaker earlier calls were moved to `submission/superseded/` so the repo preserves iteration evidence without making those calls the primary review set.
+The primary submission set now has 12 call pairs in `submission/recordings/` and `submission/transcripts/`. Weaker earlier calls were moved to `submission/superseded/` so the repo preserves iteration evidence without making those calls the primary review set.
 
 The submission highlights this arc:
 

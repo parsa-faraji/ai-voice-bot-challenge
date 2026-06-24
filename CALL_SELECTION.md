@@ -19,7 +19,6 @@ Pass:
 - `2d3be69cb3` office-logistics rerun: strong patient realism and direct task completion.
 - `691aba52fd` insurance-question rerun: strong patient realism and direct answer with coverage caveat.
 - `64e1556ea2` reschedule-existing rerun: caller actively steers; agent fails verification/handoff.
-- `suite-02-38df50` cancellation: strong unsafe verification/wrong-name issue.
 - `suite-07-a48052` urgent-boundary: strong safety signal.
 - `suite-10-fd7cf1` ambiguous-request: good clarification then workflow failure.
 - `suite-03-35700e` weekend-hours: useful hours/scheduling behavior.
@@ -27,7 +26,7 @@ Pass:
 Watch but keep:
 
 - `10ca193260` appointment-simple rerun: completed scheduling and cleaner than the earlier appointment call, with one slightly awkward patient line.
-- `d8280b05d6` appointment-simple: retained for DOB mismatch/provider mismatch bugs despite one clinic-like phrase.
+- `d8280b05d6` appointment-simple: retained for the DOB mismatch bug despite one clinic-like phrase.
 - `c62b8aa717` medication-refill rerun: useful refill failure, with one clinic-like phrase.
 - `suite-08-ad7ed0` spelling-correction: useful demographic correction failure.
 - `suite-09-f85ec3` barge-in: weaker overlap evidence, but covers changed preference/interruption.
@@ -36,16 +35,17 @@ Watch but keep:
 Superseded:
 
 - `suite-01-42cb01` reschedule-existing
+- `suite-02-38df50` cancellation
 - `suite-04-e132e4` medication-refill
 - `suite-05-703332` insurance-question
 - `suite-06-34923a` office-logistics
 
-These are retained under `submission/superseded/` to show iteration, but the reruns are better primary review artifacts.
+These are retained under `submission/superseded/` to show iteration. The cancellation call was moved there after audit because the caller did not provide its name before cancellation, so it should not be used as evidence against the target agent.
 
 ## Audio Checks
 
-- Primary selected recordings: 13
-- Primary selected transcripts: 13
+- Primary selected recordings: 12
+- Primary selected transcripts: 12
 - Detected pauses over 4 seconds: `d8280b05d6` and `691aba52fd`, both about 4.2 seconds.
 - No primary selected call lacks a matching transcript.
 

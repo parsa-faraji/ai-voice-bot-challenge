@@ -12,7 +12,7 @@ All calls targeted only:
 
 ## Primary Selected Calls
 
-Use the 13 calls in `submission/recordings/` and `submission/transcripts/` for final review. They cover scheduling, rescheduling, cancellation, medication refill, insurance, office logistics, urgent triage, spelling correction, interruption, ambiguity, and human handoff.
+Use the 12 calls in `submission/recordings/` and `submission/transcripts/` for final review. They cover scheduling, rescheduling, medication refill, insurance, office logistics, urgent triage, spelling correction, interruption, ambiguity, and human handoff.
 
 Primary selected runs:
 
@@ -21,8 +21,7 @@ Primary selected runs:
 - `64e1556ea2` - reschedule-existing rerun
 - `691aba52fd` - insurance-question rerun
 - `c62b8aa717` - medication-refill rerun
-- `d8280b05d6` - appointment-simple DOB/provider issue
-- `suite-02-38df50` - cancel appointment
+- `d8280b05d6` - appointment-simple DOB mismatch issue
 - `suite-03-35700e` - weekend hours
 - `suite-07-a48052` - urgent boundary
 - `suite-08-ad7ed0` - spelling correction
@@ -32,7 +31,7 @@ Primary selected runs:
 
 ## Iteration Evidence
 
-Superseded earlier calls live under `submission/superseded/`. They are retained to show before/after review and iteration, but they are not the primary review set.
+Superseded earlier calls live under `submission/superseded/`. They are retained to show before/after review and iteration, but they are not the primary review set. The original cancellation call is superseded because the caller did not establish its name before the cancellation flow.
 
 The first rough pilot call is retained under ignored local `artifacts/` only and should not be treated as a selected submission call.
 
