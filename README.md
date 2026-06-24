@@ -1,6 +1,6 @@
 # Athena Voice Bot Challenge
 
-Python voice bot for the Pretty Good AI AI Engineering Challenge. It calls only the assessment line, behaves like a realistic patient, records/transcribes conversations, and produces a first-pass bug report.
+Python voice bot for the Pretty Good AI AI Engineering Challenge. It calls only the assessment line, behaves like a realistic patient, records/transcribes conversations, and produces a curated bug report grounded in call evidence.
 
 ## Safety
 
@@ -22,7 +22,7 @@ uv run voicebot serve --port 8000
 ngrok http 8000
 ```
 
-If `ngrok` is not installed, this machine already has `cloudflared`:
+If `ngrok` is not installed, `cloudflared` works as an alternative:
 
 ```bash
 cloudflared tunnel --url http://localhost:8000
@@ -37,13 +37,7 @@ uv run voicebot twiml appointment-simple
 
 ## Run Calls
 
-Run CLI commands from the repository root:
-
-```bash
-cd /Users/parsafarajialamouti/ai-voice-bot-challenge
-```
-
-If you are in another directory, use:
+Run CLI commands from the repository root. If you are in another directory, use:
 
 ```bash
 uv run --project /Users/parsafarajialamouti/ai-voice-bot-challenge voicebot doctor
@@ -79,19 +73,19 @@ Artifacts are written under `artifacts/`:
 
 - `recordings/*.mp3`: Twilio call recordings
 - `transcripts/*.txt`: speaker-labeled transcripts reconstructed from Realtime transcript events
-- `BUG_REPORT.md`: first-pass bug report for manual review
+- `BUG_REPORT.md`: generated draft bug report for local review
 
 Calls default to a 180-second Twilio time limit (`MAX_CALL_SECONDS`) so a pilot or suite call cannot run open-ended. `run-suite` waits for each call to complete before starting the next one; overlapping calls usually sound worse and make artifacts harder to review.
 
 ## Submission Checklist
 
-- Minimum 10 complete 1-3 minute calls. This repo includes 12 selected calls in `submission/`.
+- Minimum 10 complete 1-3 minute calls. This repo includes 13 primary selected calls in `submission/`.
 - MP3 recording for every submitted call
 - Transcript for every submitted call
 - `ARCHITECTURE.md`
 - `SCENARIOS.md`
 - `BUG_REPORT.md` and `submission/BUG_REPORT.md`
-- `CALL_QA.md` and `CALL_EVALUATION.md`
+- `CALL_SELECTION.md` and `CALL_EVIDENCE.md`
 - `ITERATION_LOG.md`
 - `SUBMISSION.md`
 - Loom walkthrough link in this README before submission

@@ -42,8 +42,8 @@ The first rough pilot call is retained under ignored local `artifacts/` only and
 - `submission/transcripts/*.txt`
 - `submission/BUG_REPORT.md`
 - `BUG_REPORT.md`
-- `CALL_QA.md`
-- `CALL_EVALUATION.md`
+- `CALL_SELECTION.md`
+- `CALL_EVIDENCE.md`
 - `ITERATION_LOG.md`
 - `ARCHITECTURE.md`
 - `SCENARIOS.md`

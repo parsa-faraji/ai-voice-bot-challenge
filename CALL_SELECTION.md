@@ -1,6 +1,6 @@
-# Call QA Review
+# Call Selection Rationale
 
-Use this before final submission. The evaluator listens to audio first, so transcript quality is only a proxy; the final selected calls should still be heard once end-to-end.
+The final selection prioritizes coherent voice interaction first, then bug usefulness and scenario coverage. Transcript quality is treated as a proxy; the MP3 recordings are the source of truth.
 
 ## Review Rubric
 
@@ -49,4 +49,4 @@ These are retained under `submission/superseded/` to show iteration, but the rer
 - Detected pauses over 4 seconds: `d8280b05d6` and `691aba52fd`, both about 4.2 seconds.
 - No primary selected call lacks a matching transcript.
 
-Do not submit a call just because it produced a good bug if the patient voice interaction sounds incoherent. The current primary set balances useful bugs with clearer voice interaction.
+The current primary set balances useful bug evidence with clearer voice interaction. Superseded calls remain in the repo only to show iteration.

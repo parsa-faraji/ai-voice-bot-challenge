@@ -16,7 +16,7 @@ The first selected call set was coherent and produced useful bugs, but several c
 - Added stronger patient-persona rules in `src/voicebot/prompts.py` to avoid clinic-staff language.
 - Added per-scenario steering in `src/voicebot/scenarios.py` so the caller actively pursues the test objective.
 - Reframed bug report entries around defensible workflow failures rather than ASR-only wording.
-- Added `CALL_QA.md` and `CALL_EVALUATION.md` as explicit quality gates before final submission.
+- Added `CALL_SELECTION.md` and `CALL_EVIDENCE.md` to make the final call-selection rationale explicit.
 
 ## Rerun Debugging
 
@@ -43,7 +43,7 @@ After that fix, live calls opened `/media` correctly and produced complete recor
 
 The primary submission set now has 13 call pairs in `submission/recordings/` and `submission/transcripts/`. Four weaker earlier calls were moved to `submission/superseded/` so the repo preserves iteration evidence without making those calls the primary review set.
 
-The Loom walkthrough should lead with this arc:
+The submission highlights this arc:
 
 1. The first calls proved the bridge worked and uncovered real issues.
 2. Manual and independent review found caller-quality risks.

@@ -17,8 +17,7 @@ artifacts/recordings/*.mp3
 artifacts/recordings/*.ogg
 artifacts/recordings/*.wav
 artifacts/transcripts/*.txt
+artifacts/BUG_REPORT.md
 
-# Local QA scratch files; committed submission artifacts live under submission/.
-evaluation/independent_transcripts/*.txt
-evaluation/*channel_split_transcripts/
-evaluation/*_EVALUATION.md
+# Local review scratch files; committed submission artifacts live under submission/.
+evaluation/

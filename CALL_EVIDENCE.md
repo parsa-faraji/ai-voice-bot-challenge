@@ -1,6 +1,6 @@
-# Call Evaluation Notes
+# Call Evidence Summary
 
-This review is a quality gate before final submission. The assignment says voice interaction quality is evaluated before code review, so the selected calls were checked for conversation completeness, audio duration, long pauses, transcript consistency, scenario coverage, and bug evidence quality.
+The assignment evaluates voice interaction quality before code review. I selected the final calls based on conversation completeness, audio duration, long pauses, transcript consistency, scenario coverage, and bug evidence quality.
 
 ## What Was Checked
 
@@ -44,7 +44,7 @@ These calls have the clearest combination of natural flow, complete evidence, an
 
 ## Watch Items
 
-These calls are usable but should be understood when presenting the submission:
+These calls are useful but have context worth noting:
 
 - `d8280b05d6`: retained because it exposes strong DOB mismatch and provider mismatch issues; the caller has one clinic-like phrase and a short post-goodbye correction.
 - `c62b8aa717`: useful refill evidence, but the caller has one slightly clinic-like phrase.
@@ -53,4 +53,4 @@ These calls are usable but should be understood when presenting the submission:
 
 ## Recommendation
 
-Use the 13 primary calls in `submission/recordings/` and `submission/transcripts/`. The superseded calls under `submission/superseded/` should be treated as iteration evidence, not as the primary review set.
+The primary evidence set is the 13 calls in `submission/recordings/` and `submission/transcripts/`. The superseded calls under `submission/superseded/` are retained as iteration evidence, not as the primary review set.

@@ -1,6 +1,6 @@
 # Call Scenarios
 
-The suite intentionally runs 12 calls so there is room to discard weak calls and still submit at least 10 strong conversations.
+The built-in suite defines 12 scenario types so the caller covers the required workflows and has room to discard weak calls while still submitting at least 10 strong conversations. The final primary submission set contains 13 call pairs because targeted reruns were added after reviewing the initial calls.
 
 Run:
 
