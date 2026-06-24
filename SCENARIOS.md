@@ -1,6 +1,6 @@
 # Call Scenarios
 
-The built-in suite defines 12 scenario types so the caller covers the required workflows and has room to discard weak calls while still submitting at least 10 strong conversations. The current primary submission set contains 12 call pairs after targeted reruns and quality review.
+The built-in suite defines 12 scenario types so the caller can cover the required workflows and still discard weak calls while submitting at least 10 strong conversations. The current primary submission set contains 10 selected call pairs after targeted reruns and quality review.
 
 Run:
 

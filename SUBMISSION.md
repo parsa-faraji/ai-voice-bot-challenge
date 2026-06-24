@@ -12,22 +12,20 @@ All calls targeted only:
 
 ## Primary Selected Calls
 
-Use the 12 calls in `submission/recordings/` and `submission/transcripts/` for final review. They cover scheduling, rescheduling, medication refill, insurance, office logistics, urgent triage, spelling correction, interruption, ambiguity, and human handoff.
+Use the 10 calls in `submission/recordings/` and `submission/transcripts/` for final review. They cover scheduling, rescheduling, cancellation, medication refill, insurance, office logistics, urgent triage, demographic correction, weekend scheduling, and human handoff.
 
 Primary selected runs:
 
-- `10ca193260` - appointment-simple rerun
-- `2d3be69cb3` - office-logistics rerun
-- `64e1556ea2` - reschedule-existing rerun
-- `691aba52fd` - insurance-question rerun
-- `c62b8aa717` - medication-refill rerun
-- `d8280b05d6` - appointment-simple DOB mismatch issue
-- `suite-03-35700e` - weekend hours
-- `suite-07-a48052` - urgent boundary
-- `suite-08-ad7ed0` - spelling correction
-- `suite-09-f85ec3` - barge-in/changed preference
-- `suite-10-fd7cf1` - ambiguous request
-- `suite-11-1cd272` - human handoff
+- `80d29fc0c6` - appointment-simple
+- `suite-01-9aa345` - reschedule-existing
+- `suite-02-6dc9e2` - cancel-appointment
+- `suite-03-4088b0` - weekend-hours
+- `suite-04-12debe` - medication-refill
+- `suite-05-31dab8` - insurance-question
+- `suite-06-e55a17` - office-logistics
+- `suite-07-9d7036` - urgent-boundary
+- `suite-08-6f7cc5` - spelling-correction
+- `suite-11-916688` - human-handoff
 
 ## Selected Artifacts
 

@@ -1,0 +1,22 @@
+Call transcript: suite-01-9aa345-CA01942a2e5a7f5a00a26d7825756a06fb
+Speakers: PatientBot is this caller; AthenaAgent is the assessment target.
+
+[00:12] AthenaAgent: This call may be recorded for quality and training purposes. Para español, oprima el dos.
+[00:14] PatientBot: No, this is Jordan Lee. I need to move an appointment I already have, the Friday afternoon one.
+[00:25] AthenaAgent: Please provide the full name and date of birth of the patient with the appointment.
+[00:27] PatientBot: This is Jordan Lee, date of birth July 9, 1976. Can we go ahead and move that Friday 3 PM appointment to a weekday morning?
+[00:43] AthenaAgent: I need to confirm your information before I can help. Can you please spell your first and last name for me?
+[00:44] PatientBot: Jordan Lee. J-O-R-D-A-N, last name L-E-E.
+[01:05] AthenaAgent: Would you like me to look up your record using the phone number you have on file with us? If so, please tell me that number. If you're not sure, I can confirm your name and date of birth again.
+[01:08] PatientBot: Sure, let me share the number I use with your office so you can pull it up.
+[01:08] PatientBot: I’m not sure which phone number is on file. This is Jordan Lee, date of birth July 9, 1976. Can we go ahead and move that Friday appointment to a weekday morning?
+[01:29] AthenaAgent: Let's confirm your details one more time. Please spell your first and last name and state your date of birth.
+[01:31] PatientBot: I’ve already given you that. Can we go ahead? It’s Jordan Lee, date of birth July 9, 1976.
+[01:42] AthenaAgent: Please state your date of birth.
+[01:44] PatientBot: July 9, 1976. Can we go ahead and move that Friday 3 PM appointment to a weekday morning?
+[02:05] AthenaAgent: I can't proceed further right now, but I can make sure our clinic support team follows up with you. Would you like me to connect you to a live agent?
+[02:06] PatientBot: Before you transfer me, can you tell me if there’s a cancellation fee for changing it? If not, yes, please connect me.
+[02:19] AthenaAgent: Connecting you to a representative. Please wait.
+[02:20] PatientBot: Thanks, I’ll wait.
+[02:25] AthenaAgent: Hello, you've reached the Pretty Good AI test line. Goodbye!
+[02:25] PatientBot: Thanks, goodbye.

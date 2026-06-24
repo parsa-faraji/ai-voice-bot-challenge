@@ -1,0 +1,10 @@
+Call transcript: suite-06-e55a17-CA30e9319829f3f65168306ec5c074d25d
+Speakers: PatientBot is this caller; AthenaAgent is the assessment target.
+
+[00:06] AthenaAgent: This call may be recorded for quality and training purposes. Para español, oprima el dos.
+[00:13] AthenaAgent: Thanks for calling Pivot Point Orthopedics, part of Pretty Good AI. Am I speaking with Maya?
+[00:15] PatientBot: No, this is Noah Williams. I just have a couple quick questions before I book. What are your hours, and what’s the address? Also, is there parking available, and how early should I arrive?
+[01:00] AthenaAgent: Our clinic is open Monday through Friday. Hours are 9 a.m. to 4 p.m. on Monday, Tuesday, and Thursday, 12 p.m. to 7 p.m. on Wednesday, and 9 a.m. to 12 p.m. on Friday. We're located at 1234 Recovery Way, Suite 200, Austin. Free patient parking is available in the surface lot in front of the building. For your appointment, arriving about 10 to 15 minutes early is a good idea. Let me know if you have any other questions or if you'd like to book an appointment.
+[01:00] PatientBot: Thanks, that helps a lot. I’ll plan on coming about 10 to 15 minutes early. I’m not ready to book just yet, but I appreciate the info.
+[01:16] PatientBot: Thanks, goodbye.
+[01:16] AthenaAgent: Glad I could help. If you have more questions or want to book later, just give us a call. Have a great day!

@@ -1,0 +1,13 @@
+Ok I Call transcript: suite-05-31dab8-CA1feec17f6aaa8150b765c5f1f6610dbd
+Speakers: PatientBot is this caller; AthenaAgent is the assessment target.
+
+[00:13] AthenaAgent: This call may be recorded for quality and training purposes. Para español, oprima el dos. Thanks for calling Pivot Point Orthopedics, part of Pretty Good AI. Am I speaking with Maya?
+[00:16] PatientBot: No, this is Avery Johnson. I just have a quick question about Aetna insurance before booking. Do you take Aetna PPO for new patients, and is coverage guaranteed?
+[00:51] AthenaAgent: Pivot Point Orthopedics accepts most insurance plans and welcomes new patients. However, coverage details can vary based on your specific plan. I recommend contacting your insurance provider directly to confirm your benefits and coverage. Would you like to update your insurance information with us, or have any other questions?
+[00:54] PatientBot: Thanks, that’s helpful. I understand you can’t guarantee coverage.
+
+I’m just trying to plan ahead. Do you have a general idea of new patient availability, like whether it’s usually a few days or a few weeks, before I call Aetna?
+[01:17] AthenaAgent: We usually have new patient openings within a few days to a week. If you'd like, I can check the next available appointment for you now. Would you like to see what's open?
+[01:18] PatientBot: That’s good to know. I’m going to check with Aetna first and call back to book if it looks covered. Thanks for the help.
+[01:31] AthenaAgent: You're welcome. If you have more questions or want to book just give us a call.
+[01:32] PatientBot: Thanks, goodbye.

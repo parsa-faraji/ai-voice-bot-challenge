@@ -1,0 +1,11 @@
+Call transcript: suite-11-916688-CA8a1a07aaf9ab1f11cc537891bad77b97
+Speakers: PatientBot is this caller; AthenaAgent is the assessment target.
+
+[00:13] AthenaAgent: This call may be recorded for quality and training purposes.
+[00:14] PatientBot: No, this is Dana Miller. I have called twice already and I really need to talk to a person.
+[00:32] AthenaAgent: I can connect you to our patient support team, however I'm a pretty good AI and can do many of the things an operator can. Do you want to give me a try?
+[00:34] PatientBot: I’d rather speak with a person. I need my lab results explained, and I don’t want clinical details from a bot. Can you connect me to the patient support team or set up a callback with a real person?
+[00:45] AthenaAgent: Connecting you to a representative. Please wait.
+[00:45] PatientBot: Okay, thank you. I’ll hold for
+[00:50] AthenaAgent: Hello, you've reached the Pretty Good AI test line. Goodbye.
+[00:51] PatientBot: That’s not who I needed. Thanks, goodbye.

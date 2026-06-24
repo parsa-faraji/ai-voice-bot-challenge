@@ -1,42 +1,38 @@
 # Call Selection Rationale
 
-The final selection prioritizes coherent voice interaction first, then bug usefulness and scenario coverage. Transcript quality is treated as a proxy; the MP3 recordings are the source of truth.
+I selected the final calls by prioritizing the assignment rubric in order: lucid voice interaction first, then realistic scenario coverage, then useful agent-side issue evidence. I did not force a bug report entry from calls where the agent behaved reasonably.
 
 ## Review Rubric
 
-Score each call as Pass, Watch, or Exclude.
+Each candidate call was reviewed for:
 
-- Patient realism: caller sounds like a patient, not clinic staff.
-- Turn-taking: caller waits for the agent, avoids repeated interruptions except in the intentional barge-in scenario, and does not continue with new content after a clear disconnect.
-- Scenario steering: caller reaches or actively pursues the intended test objective.
-- Conversation completeness: call is a real exchange, not a single question and hang-up.
-- Evidence quality: transcript has both sides, recording exists, and bug findings are caused by the target agent rather than caller confusion.
+- Patient realism: the caller sounds like a patient, not clinic staff.
+- Turn-taking: the caller waits for the agent and avoids awkward overlap except where interruption is intentional.
+- Scenario steering: the caller reaches or actively pursues the intended real-life workflow.
+- Conversation completeness: the call is a real exchange, not a one-question hangup.
+- Evidence quality: transcript and MP3 exist, and any bug finding is caused by the target agent rather than caller confusion.
 
-## Final Primary Set
+## Final 10-Call Set
 
-Pass:
+| Run | Scenario | Selection reason |
+| --- | --- | --- |
+| `80d29fc0c6` | New appointment | Clean identity/DOB handling by the caller; exposes DOB mismatch acceptance and transfer behavior. |
+| `suite-01-9aa345` | Reschedule existing appointment | Coherent reschedule attempt; exposes verification dead-end and failed transfer. |
+| `suite-02-6dc9e2` | Cancel appointment | Covers cancellation flow; agent cannot complete after repeated verification and routes to support. |
+| `suite-03-4088b0` | Weekend hours | Tests Sunday scheduling; agent gives hours answer and then routes scheduling to failed transfer. |
+| `suite-04-12debe` | Medication refill | Tests refill details and identity path; agent transfers before collecting actionable refill information. |
+| `suite-05-31dab8` | Insurance question | Clean coverage call; no strong bug, but useful evidence of natural caller behavior. |
+| `suite-06-e55a17` | Office logistics | Clean hours/address/parking/arrival call; no strong bug, but high-quality scenario coverage. |
+| `suite-07-9d7036` | Urgent symptoms | Strong safety scenario; agent asks identity before giving chest-tightness guidance. |
+| `suite-08-6f7cc5` | Name/DOB correction | Useful demographic correction coverage; retained despite one minor scripted filler line. |
+| `suite-11-916688` | Human handoff | Short but complete handoff request; exposes transfer-to-test-line behavior. |
 
-- `2d3be69cb3` office-logistics rerun: strong patient realism and direct task completion.
-- `691aba52fd` insurance-question rerun: strong patient realism and direct answer with coverage caveat.
-- `64e1556ea2` reschedule-existing rerun: caller actively steers; agent fails verification/handoff.
-- `suite-07-a48052` urgent-boundary: strong safety signal.
-- `suite-10-fd7cf1` ambiguous-request: good clarification then workflow failure.
-- `suite-03-35700e` weekend-hours: useful hours/scheduling behavior.
+## Excluded Recent Calls
 
-Watch but keep:
+- `327f2d681e` appointment rerun: mostly good, but the call ended awkwardly after the agent said only "Your appointment."
+- `suite-09-ba4902` barge-in: did not clearly test barge-in recovery and added less evidence than the other selected scenarios.
+- `suite-10-32c0b0` ambiguous request: useful idea, but the caller slipped into staff-like phrasing, so I excluded it from the final selected set.
 
-- `10ca193260` appointment-simple rerun: completed scheduling and cleaner than the earlier appointment call, with one slightly awkward patient line.
-- `d8280b05d6` appointment-simple: retained for the DOB mismatch bug despite one clinic-like phrase.
-- `c62b8aa717` medication-refill rerun: useful refill failure, with one clinic-like phrase.
-- `suite-08-ad7ed0` spelling-correction: useful demographic correction failure.
-- `suite-09-f85ec3` barge-in: weaker overlap evidence, but covers changed preference/interruption.
-- `suite-11-1cd272` human-handoff: short but complete failed handoff.
+## Watch Items
 
-## Audio Checks
-
-- Primary selected recordings: 12
-- Primary selected transcripts: 12
-- Detected pauses over 4 seconds: `d8280b05d6` and `691aba52fd`, both about 4.2 seconds.
-- No primary selected call lacks a matching transcript.
-
-The current primary set balances useful bug evidence with clearer voice interaction.
+The selected set intentionally stays at the 10-call minimum to keep quality high. A few selected calls still have minor caller artifacts, mainly short filler or verification-loop pushback, but the core conversations are coherent and the bug report only cites agent-side behavior that remains clear despite those artifacts.

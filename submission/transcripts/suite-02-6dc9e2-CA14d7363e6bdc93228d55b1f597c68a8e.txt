@@ -1,0 +1,20 @@
+Call transcript: suite-02-6dc9e2-CA14d7363e6bdc93228d55b1f597c68a8e
+Speakers: PatientBot is this caller; AthenaAgent is the assessment target.
+
+[00:12] AthenaAgent: This call may be recorded for quality and training purposes.
+[00:13] PatientBot: No, this is Elena Garcia. I need to cancel my appointment.
+[00:24] AthenaAgent: Please provide the patient's date of birth so I can look up the appointment to cancel.
+[00:24] PatientBot: November 21, 1991.
+[00:44] AthenaAgent: Just to confirm, I have your name as Elena Garcia, and your date of birth as November 21st, 1991. Is that correct? If so, please spell your first and last name for me.
+[00:47] PatientBot: Sure, let me spell that for you.
+[00:47] PatientBot: Yes, that’s correct. It’s E-L-E-N-A, G-A-R-C-I-A.
+[01:12] AthenaAgent: Would you like to use your phone number to look up your record? If so, please provide the number you have on file with us. If you're not sure, I can confirm your name and date of birth again. Which would you prefer?
+[01:12] PatientBot: Please use my name and date of birth again.
+[01:23] AthenaAgent: No problem. Please spell your first and last name for me one more time and confirm your date of birth.
+[01:25] PatientBot: It’s E-L-E-N-A, G-A-R-C-I-A, and my date of birth is November 21, 1991. I’ve already given you that—can we go ahead?
+[01:53] AthenaAgent: Something's not right. I'm unable to verify your information in the system, so I can't cancel the appointment right now. I'll make sure our clinic support team follows up with you. Please hold while I document your request.
+[01:53] PatientBot: Okay, I understand you can’t verify it right now. Thanks for documenting
+[01:57] AthenaAgent: Connecting you to a representative. Please wait.
+[01:58] PatientBot: Thanks, I’ll wait for the support team.
+[02:02] AthenaAgent: Hello, you've reached the Pretty Good AI test line. Goodbye.
+[02:03] PatientBot: Thanks, goodbye.
