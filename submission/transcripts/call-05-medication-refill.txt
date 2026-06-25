@@ -1,24 +1,17 @@
 Call transcript: call-05-medication-refill
 Speakers: PatientBot is this caller; AthenaAgent is the assessment target.
 
-[00:13] AthenaAgent: This call may be recorded for quality and training purposes. Thanks for calling Pivot Point Orthopedics, part of Pretty Good AI.
-[00:14] PatientBot: No, this is Sam Rivera. I am running low on my blood pressure medicine and need a refill.
-[00:29] AthenaAgent: Thanks for letting me know. Sam, are you calling to request a refill for yourself or for someone else?
-[00:30] PatientBot: For myself. I’m just trying to get my refill set up.
-[00:39] AthenaAgent: Please provide your date of birth.
-[00:39] PatientBot: May 30, 1968.
-[00:54] AthenaAgent: Just to confirm, can you please spell your first and last name for me? And your date of birth is May 30, 1968, correct?
-[00:56] PatientBot: Yes, that date of birth is correct. My name is Sam Rivera, spelled S-A-M R-I-V-E-R-A. I’m calling about a refill for my blood pressure medicine.
-[01:22] AthenaAgent: Would you like me to look up your record using your phone number? If so, please provide the number you have on file with us. If you're not sure, I can confirm your name and date of birth again. Which would you prefer?
-[01:24] PatientBot: You can use my name and date of birth on file, since I already gave them. Can we go ahead with the refill request for the little white blood pressure pill?
-[01:50] AthenaAgent: Let's confirm your details one more time to make sure I have everything right. Your name is Sam Rivera, spelled S-A-M-R-I-V-E-R-A, and your date of birth is May 30th, 1968. Is that correct?
-[01:50] PatientBot: I’ve already given you that. Can we go ahead?
-[02:06] AthenaAgent: I can't proceed further right now, but I can make sure our clinic support team follows up with you. Would you like me to connect you to our patient support team?
-[02:08] PatientBot: Before we switch you over, I want to be sure we’re not missing anything simple.
-[02:08] PatientBot: Before you transfer me, what do you need to process the refill? If it’s something quick I can provide, I’d rather do that first.
-[02:33] AthenaAgent: I appreciate your patience. I need to verify your identity in our system before I can process the refill. Since I couldn't confirm your record automatically, a team member will need to help you directly. Would you like to be connected now?
-[02:34] PatientBot: Yes, please connect me to a team member. Thanks for helping with this.
-[02:41] AthenaAgent: Connecting you to a representative. Please wait.
-[02:41] PatientBot: Thanks, I
-[02:46] AthenaAgent: Hello, you've reached the Pretty Good AI test line. Goodbye.
-[02:46] PatientBot: Thanks, goodbye.
+[00:12.8] AthenaAgent: part of Pretty Good AI. Am I speaking with Maya?
+[00:14.1] PatientBot: No, this is Sam Rivera. I’m running low on my little white blood pressure pill and need a refill.
+[00:27.4] AthenaAgent: Can you please provide the full name and date of birth of the patient who needs the refill?
+[00:27.9] PatientBot: This is Sam Rivera, date of birth May 30, 1968.
+[00:47.9] AthenaAgent: Just to confirm, I have your name as Sam Rivera and your date of birth as May 30, 1968. Is that correct? If so, please spell your first and last name for me.
+[00:49.2] PatientBot: Yes, that’s correct. Sam, spelled S A M, Rivera, spelled R I V E R A.
+[01:14.7] AthenaAgent: Would you like me to look up your record using the phone number you have on file with us? If so, please tell me that number. If you're not sure, I can confirm your name and date of birth again. Let me know how you'd like to proceed.
+[01:15.3] PatientBot: 833-958-9786.
+[01:34.7] AthenaAgent: I have your phone number as 833-958-9786 and your date of birth as May 30, 1968. Is that correct?
+[01:34.8] PatientBot: Yes, that’s correct.
+[01:52] PatientBot: Before you transfer
+[01:52.1] AthenaAgent: I can't help with the refill right now, but I'll connect you to our patient support team for help. Please stay on the line. Connecting you to a representative. Please wait.
+[01:56.9] AthenaAgent: Hello, you've reached the Pretty Good AI test line. Goodbye.
+[01:57.2] PatientBot: Wait, I was trying to reach a person about my refill.

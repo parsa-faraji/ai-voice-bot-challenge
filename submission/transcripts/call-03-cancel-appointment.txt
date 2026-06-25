@@ -1,21 +1,18 @@
 Call transcript: call-03-cancel-appointment
 Speakers: PatientBot is this caller; AthenaAgent is the assessment target.
 
-[00:13] AthenaAgent: Thanks for calling Pivot Point Orthopedics, part of Pretty Good AI. Am I speaking with Maya?
-[00:13] PatientBot: No, this is Elena Garcia. I need to cancel my appointment.
-[00:22] AthenaAgent: Please provide your date of birth.
-[00:22] PatientBot: November 21, 1991.
-[00:41] AthenaAgent: Can you please spell your first and last name to make sure I have it right? Also, just to confirm, your date of birth is November 21, 1991. Is that correct?
-[00:43] PatientBot: Elena, spelled E L E N A. Garcia, spelled G A R C I A.
-[00:59] PatientBot: Yes, that's correct.
-[00:59] AthenaAgent: Thank you. Just to confirm, your date of birth is November 21, 1991, is that correct?
-[01:18] AthenaAgent: Would you like to use your phone number to look up your record? If so, please provide the number you have on file with us. If you're not sure, I can confirm your name and date of birth again. Which would you prefer?
-[01:19] PatientBot: You can confirm my name and date of birth again.
-[01:29] AthenaAgent: Please spell your first and last name one more time and confirm your date of birth.
-[01:31] PatientBot: Elena, spelled E L E N A. Garcia, spelled G A R C I A. Date of birth November 21, 1991.
-[01:54] AthenaAgent: I can't proceed further right now, but I can make sure our clinic support team follows up with you. Would you like me to connect you to our patient support team?
-[01:56] PatientBot: Before you transfer me, can you tell me if the appointment is already cancelled, or if not, please connect me to support?
-[02:08] AthenaAgent: Connecting you to a representative. Please wait.
-[02:08] PatientBot: Okay, thanks.
-[02:13] PatientBot: Thanks, goodbye.
-[02:13] AthenaAgent: Hello, you've reached the Pretty Good AI test line. Goodbye.
+[00:12.5] AthenaAgent: part of PrettyGood.ai. Am I speaking with Maya?
+[00:13.3] PatientBot: No, this is Elena Garcia. I need to cancel my appointment.
+[00:25.9] AthenaAgent: Thanks for letting me know, Elena. Are you calling to cancel an appointment for yourself or for someone else?
+[00:27.2] PatientBot: For myself. I’m just canceling and I don’t want to reschedule right now.
+[00:36.5] AthenaAgent: Please provide your date of birth.
+[00:36.8] PatientBot: November 21, 1991.
+[00:47.8] AthenaAgent: Just to confirm, can you please spell your first and last name for me?
+[00:49] PatientBot: Elena, spelled E L E N A, Garcia, spelled G A R C I A.
+[01:11.3] AthenaAgent: Would you like me to look up your record using the phone number you have on file with us? If so, please tell me that number. If you're not sure, I can confirm your name and date of birth again. Which would you prefer?
+[01:11.6] PatientBot: 833-958-9786
+[01:39.5] AthenaAgent: Your phone number is 833-958-9786 and your date of birth is November 21st, 1991. Is that correct?
+[01:39.8] PatientBot: Yes, that’s correct.
+[02:03.2] AthenaAgent: I can't proceed further right now, but I can make sure our clinic support team follows up with you. Please hold while I connect you to our patient support team. Connecting you to a representative. Please wait.
+[02:07.8] AthenaAgent: Hello, you've reached the Pretty Good AI test line. Goodbye.
+[02:08.2] PatientBot: Wait, I was trying to cancel my appointment.

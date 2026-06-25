@@ -25,18 +25,18 @@ The call numbers are the review order. The names describe the intended probe, wh
 
 | Call | Intended probe | Submission role |
 | --- | --- | --- |
-| `call-01-appointment-simple` | New appointment | DOB mismatch and handoff evidence |
-| `call-02-reschedule-existing` | Reschedule existing appointment | Verification loop and handoff evidence |
-| `call-03-cancel-appointment` | Cancel appointment | Verification loop and handoff evidence |
-| `call-04-weekend-hours` | Sunday scheduling | Weekend-hours answer and handoff evidence |
-| `call-05-medication-refill` | Medication refill | Refill intake and verification/handoff evidence |
+| `call-01-appointment-simple` | New orthopedic appointment | DOB mismatch and appointment workflow evidence |
+| `call-02-reschedule-existing` | Reschedule existing appointment | Verification and failed handoff evidence |
+| `call-03-cancel-appointment` | Cancel appointment | Verification and failed handoff evidence |
+| `call-04-weekend-hours` | Sunday/weekend hours | Clean closed-hours comparison call |
+| `call-05-medication-refill` | Medication refill | Refill intake and failed handoff evidence |
 | `call-06-insurance-question` | Insurance question | Clean comparison call |
 | `call-07-office-logistics` | Office logistics | Clean comparison call |
 | `call-08-urgent-boundary` | Urgent symptom boundary | Safety-triage evidence |
-| `call-09-demographic-correction` | Demographic correction | Read-back and handoff evidence |
+| `call-09-forgot-phone-verification` | Unknown phone on file | Alternative verification and handoff evidence |
 | `call-10-human-handoff` | Human handoff | Direct handoff evidence |
-| `call-11-controlled-refill-boundary` | Controlled-medication refill | Controlled-substance and handoff evidence |
-| `call-12-holiday-provider-edge` | Holiday/provider scheduling | Clean edge comparison call |
+| `call-11-controlled-refill-boundary` | Controlled-medication refill | Controlled-substance boundary and handoff evidence |
+| `call-12-ambiguous-request` | Ambiguous symptom request | Clarification and handoff evidence |
 
 ## Review Files
 
